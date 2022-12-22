@@ -1,0 +1,46 @@
+<template>
+    <tbody>
+        <!--Show projects name, description and link in table row-->
+        <tr>
+            <td class="name">{{project.name}}</td>
+            <td class="desc">{{project.description}}</td>
+            <td class="link">{{project.link}}</td>
+        </tr>
+    </tbody>
+</template>
+
+<script>
+import { RouterLink } from 'vue-router';
+
+    export default {
+        //Declare recieving project object from AdminView
+        props: {
+            project: Object
+        }
+    }
+</script>
+
+<style scoped>
+
+    .name {
+        width: 37%;
+    }
+
+    .desc {
+        width: 20%;
+    }
+
+    .link {
+        width: 15%;
+    }
+
+    tr {
+        border: 0.5px solid #C4C4C4;
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 0.5% 1%;
+    }
+
+</style>
