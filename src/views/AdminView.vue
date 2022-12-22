@@ -8,7 +8,7 @@
                 <th>Länk:</th>
             </thead>
                 <!--Loop through and show projects -->
-                <Project v-for="project in projects" :project="project" :key="project._id" /> 
+                <Project @projectDeleted="getProjects()" v-for="project in projects" :project="project" :key="project._id" /> 
             </table>
     </section>
 </template>
@@ -26,7 +26,7 @@ export default {
         Project
     },    
     methods: {
-        async getProducts() {
+        async getProjects() {
 
             //Get saved token
             //const token = localStorage.getItem('token'); 
@@ -47,7 +47,7 @@ export default {
             this.projects = data;  
         }
     }, mounted() {
-        this.getProducts();
+        this.getProjects();
     }
 }
 </script>

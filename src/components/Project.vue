@@ -5,6 +5,7 @@
             <td class="name">{{project.name}}</td>
             <td class="desc">{{project.description}}</td>
             <td class="link">{{project.link}}</td>
+            <td class="del"><input type="button" @click="deleteProject(project._id)" value="Radera" /></td>
         </tr>
     </tbody>
 </template>
@@ -16,6 +17,25 @@ import { RouterLink } from 'vue-router';
         //Declare recieving project object from AdminView
         props: {
             project: Object
+        },
+        emits: ["projectDeleted"], //Declare emits used
+        methods: {
+            async deleteProject(id) {
+
+            //Get saved token
+            //const token = localStorage.getItem('token'); 
+
+            //Delete product in database
+            const resp = await fetch("http://127.0.0.1:5000/projects/" + id, {
+            method: "DELETE",
+            headers: {
+                "Accept": "application/json",
+                "Content-type": "application/json"
+                //'Authorization': "Bearer " + token
+            }
+            });
+            this.$emit('projectDeleted');
+            }
         }
     }
 </script>
