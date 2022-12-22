@@ -1,5 +1,4 @@
 <template>
-    <tbody>
         <!--Show projects name, description and link in table row-->
         <tr>
             <td class="name">{{project.name}}</td>
@@ -7,7 +6,6 @@
             <td class="link">{{project.link}}</td>
             <td class="del"><input type="button" @click="deleteProject(project._id)" value="Radera" /></td>
         </tr>
-    </tbody>
 </template>
 
 <script>

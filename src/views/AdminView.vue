@@ -7,9 +7,20 @@
                 <th>Beskrivning:</th>
                 <th>Länk:</th>
             </thead>
+            <tbody>
+                <tr class="menu-item">
+                    <td><input v-model="name" type="text" id="input-name" /></td>
+                    <td><input v-model="desc" type="text" id="input-desc" /></td>
+                    <td><input v-model="link" type="text" id="input-link" /></td>
+                    <td id="project-btn"><input type="submit" value="Lägg till" @click="addProject()" class="add-btn" id="add-project" style="display:block" /></td>
+                    <td></td>
+                </tr>
                 <!--Loop through and show projects -->
                 <Project @projectDeleted="getProjects()" v-for="project in projects" :project="project" :key="project._id" /> 
-            </table>
+            </tbody>
+        </table>
+        <p v-if="message == true" class="text-danger">Du måste fylla i alla * obligatoriska fält</p>
+        <p v-if="confirm == true" class="text-success">Produkten är lagrad</p>
     </section>
 </template>
 
@@ -20,6 +31,11 @@ export default {
     data() {
         return {
             projects: [],
+            name: "",
+            desc: "",
+            link: "",
+            message: false,
+            confirm: false
         }
     },
     components: {
@@ -45,7 +61,44 @@ export default {
 
             //Save response in products array
             this.projects = data;  
-        }
+        },
+        async addProject() {
+                //Get saved token
+                //const token = localStorage.getItem('token'); 
+
+                //Control if input is correct else show error message. If correct save input in body to post
+                if(this.name.length != "" && this.desc.length != "" && this.link.length != "") {
+                    
+                    let projectBody = {
+                        name: this.name,
+                        description: this.desc,
+                        link: this.link
+                    };
+
+                    //Add product to API
+                    const resp = await fetch("http://127.0.0.1:5000/projects", {
+                        method: "POST",
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-type": "application/json",
+                            //'Authorization': "Bearer " + token
+                        },
+                        body: JSON.stringify(projectBody)
+                    });
+
+                    const data = await resp.json();
+
+                    // Set default values to input fields after posting
+                    this.name = "",
+                    this.desc = "",
+                    this.link = "", 
+                    this.confirm = true,
+                    this.message = false
+                    this.getProjects();
+                } else {
+                    this.message = true;
+                }
+            }
     }, mounted() {
         this.getProjects();
     }
