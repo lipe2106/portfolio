@@ -30,7 +30,6 @@ import { RouterLink } from 'vue-router';
             updateProject(id) {
                 this.id = id;
                 this.$emit('updateProject', this.id);
-                console.log(this.id)
             },
             async deleteProject(id) {
 
@@ -38,7 +37,7 @@ import { RouterLink } from 'vue-router';
             //const token = localStorage.getItem('token'); 
 
             //Delete product in database
-            const resp = await fetch("http://127.0.0.1:5000/projects/" + id, {
+            const resp = await fetch("http://127.0.0.1:3000/projects/" + id, {
             method: "DELETE",
             headers: {
                 "Accept": "application/json",

@@ -12,7 +12,8 @@
                     <td><input v-model="name" type="text" id="input-name" /></td>
                     <td><input v-model="desc" type="text" id="input-desc" /></td>
                     <td><input v-model="link" type="text" id="input-link" /></td>
-                    <td id="project-btn"><input type="submit" value="Lägg till" @click="addProject()" class="add-btn" id="add-project" style="display:block" /></td>
+                    <td v-if="addBtn == true" id="btn-add"><input type="submit" value="Lägg till" @click="addProject()" class="add-btn" id="add-project" style="display:block" /></td>
+                    <td v-if="updateBtn == true" id="btn-update"><input type="submit" value="Uppdatera" @click="updateProject()" class="update-btn" id="update-project" style="display:block" /></td>
                     <td></td>
                 </tr>
                 <!--Loop through and show projects -->
@@ -20,7 +21,8 @@
             </tbody>
         </table>
         <p v-if="message == true" class="text-danger">Du måste fylla i alla * obligatoriska fält</p>
-        <p v-if="confirm == true" class="text-success">Produkten är lagrad</p>
+        <p v-if="saved == true" class="text-success">Projektet är sparat</p>
+        <p v-if="updated == true" class="text-success">Projektet är uppdaterat</p>
     </section>
 </template>
 
@@ -34,8 +36,12 @@ export default {
             name: "",
             desc: "",
             link: "",
+            id: "",
             message: false,
-            confirm: false
+            saved: false,
+            updated: false,
+            addBtn: true,
+            updateBtn: false
         }
     },
     components: {
@@ -48,7 +54,7 @@ export default {
             //const token = localStorage.getItem('token'); 
 
             //Fetch, turn response into json and save in data variable
-            const resp = await fetch("http://127.0.0.1:5000/projects/", {
+            const resp = await fetch("http://127.0.0.1:3000/projects/", {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
@@ -76,7 +82,7 @@ export default {
                 };
 
                 //Add product to API
-                const resp = await fetch("http://127.0.0.1:5000/projects", {
+                const resp = await fetch("http://127.0.0.1:3000/projects", {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",
@@ -92,7 +98,8 @@ export default {
                 this.name = "",
                 this.desc = "",
                 this.link = "", 
-                this.confirm = true,
+                this.saved = true,
+                this.updated = false,
                 this.message = false
                 this.getProjects();
             } else {
@@ -103,7 +110,7 @@ export default {
             //Get saved token
             //const token = localStorage.getItem('token'); 
             //Fetch, turn response into json and save in data variable
-            const resp = await fetch("http://127.0.0.1:5000/projects/" + id, {
+            const resp = await fetch("http://127.0.0.1:3000/projects/" + id, {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
@@ -117,11 +124,16 @@ export default {
             //Show response in input
             this.name = data['name'],
             this.desc = data['description'],
-            this.link = data['link']
+            this.link = data['link'],
+            this.id = data['_id'],
+            this.updateBtn = true,
+            this.addBtn = false
         },
-        async updateProject(id) {
+        async updateProject() {
             //Get saved token
             //const token = localStorage.getItem('token'); 
+
+            let id = this.id;
 
             //Control if input is correct else show error message. If correct save input in body to post
             if(this.name.length != "" && this.desc.length != "" && this.link.length != "") {
@@ -133,7 +145,7 @@ export default {
                 };
 
                 //Add project to API
-                const resp = await fetch("http://127.0.0.1:5000/projects/" + id, {
+                const resp = await fetch("http://127.0.0.1:3000/projects/" + id, {
                     method: "PUT",
                     headers: {
                         "Accept": "application/json",
@@ -146,10 +158,15 @@ export default {
                 const data = await resp.json();
 
                 // Set default values to input fields after posting
-                this.confirm = true;
-                this.message = false
-                this.$emit('projectUpdated');
-
+                this.name = "",
+                this.desc = "",
+                this.link = "",
+                this.updated = true,
+                this.saved = false,
+                this.message = false,
+                this.updateBtn = false,
+                this.addBtn = true,
+                this.getProjects();
             } 
         }
     }, mounted() {
