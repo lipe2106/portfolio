@@ -4,6 +4,7 @@
             <td class="name">{{project.name}}</td>
             <td class="desc">{{project.description}}</td>
             <td class="link">{{project.link}}</td>
+            <td class="update"><input type="button" @click="updateProject(project._id)" value="Ändra" /></td>
             <td class="del"><input type="button" @click="deleteProject(project._id)" value="Radera" /></td>
         </tr>
 </template>
@@ -12,12 +13,25 @@
 import { RouterLink } from 'vue-router';
 
     export default {
+        data() {
+            return {
+                id: ""
+            }
+        },
         //Declare recieving project object from AdminView
         props: {
             project: Object
         },
-        emits: ["projectDeleted"], //Declare emits used
+        emits: [ //Declare emits used
+            "updateProject",
+            "projectDeleted"
+        ], 
         methods: {
+            updateProject(id) {
+                this.id = id;
+                this.$emit('updateProject', this.id);
+                console.log(this.id)
+            },
             async deleteProject(id) {
 
             //Get saved token

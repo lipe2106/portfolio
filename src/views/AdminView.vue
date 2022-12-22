@@ -16,7 +16,7 @@
                     <td></td>
                 </tr>
                 <!--Loop through and show projects -->
-                <Project @projectDeleted="getProjects()" v-for="project in projects" :project="project" :key="project._id" /> 
+                <Project @projectDeleted="getProjects()" @updateProject="getProjectById" v-for="project in projects" :project="project" :key="project._id" /> 
             </tbody>
         </table>
         <p v-if="message == true" class="text-danger">Du måste fylla i alla * obligatoriska fält</p>
@@ -63,42 +63,95 @@ export default {
             this.projects = data;  
         },
         async addProject() {
-                //Get saved token
-                //const token = localStorage.getItem('token'); 
+            //Get saved token
+            //const token = localStorage.getItem('token'); 
 
-                //Control if input is correct else show error message. If correct save input in body to post
-                if(this.name.length != "" && this.desc.length != "" && this.link.length != "") {
-                    
-                    let projectBody = {
-                        name: this.name,
-                        description: this.desc,
-                        link: this.link
-                    };
+            //Control if input is correct else show error message. If correct save input in body to post
+            if(this.name.length != "" && this.desc.length != "" && this.link.length != "") {
+                
+                let projectBody = {
+                    name: this.name,
+                    description: this.desc,
+                    link: this.link
+                };
 
-                    //Add product to API
-                    const resp = await fetch("http://127.0.0.1:5000/projects", {
-                        method: "POST",
-                        headers: {
-                            "Accept": "application/json",
-                            "Content-type": "application/json",
-                            //'Authorization': "Bearer " + token
-                        },
-                        body: JSON.stringify(projectBody)
-                    });
+                //Add product to API
+                const resp = await fetch("http://127.0.0.1:5000/projects", {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-type": "application/json",
+                        //'Authorization': "Bearer " + token
+                    },
+                    body: JSON.stringify(projectBody)
+                });
 
-                    const data = await resp.json();
+                const data = await resp.json();
 
-                    // Set default values to input fields after posting
-                    this.name = "",
-                    this.desc = "",
-                    this.link = "", 
-                    this.confirm = true,
-                    this.message = false
-                    this.getProjects();
-                } else {
-                    this.message = true;
-                }
+                // Set default values to input fields after posting
+                this.name = "",
+                this.desc = "",
+                this.link = "", 
+                this.confirm = true,
+                this.message = false
+                this.getProjects();
+            } else {
+                this.message = true;
             }
+        },
+        async getProjectById(id) {
+            //Get saved token
+            //const token = localStorage.getItem('token'); 
+            //Fetch, turn response into json and save in data variable
+            const resp = await fetch("http://127.0.0.1:5000/projects/" + id, {
+                method: "GET",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-type": "application/json"
+                    //'Authorization': "Bearer " + token
+                }
+            });
+
+            const data = await resp.json();
+
+            //Show response in input
+            this.name = data['name'],
+            this.desc = data['description'],
+            this.link = data['link']
+        },
+        async updateProject(id) {
+            //Get saved token
+            //const token = localStorage.getItem('token'); 
+
+            //Control if input is correct else show error message. If correct save input in body to post
+            if(this.name.length != "" && this.desc.length != "" && this.link.length != "") {
+                
+                let projectBody = {
+                    name: this.name,
+                    description: this.desc,
+                    link: this.link
+                };
+
+                //Add project to API
+                const resp = await fetch("http://127.0.0.1:5000/projects/" + id, {
+                    method: "PUT",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-type": "application/json"
+                        //'Authorization': "Bearer " + token
+                    },
+                    body: JSON.stringify(projectBody)
+                });
+
+                const data = await resp.json();
+
+                // Set default values to input fields after posting
+                this.confirm = true;
+                this.message = false
+                this.$emit('projectUpdated');
+
+            } 
+        }
     }, mounted() {
         this.getProjects();
     }
