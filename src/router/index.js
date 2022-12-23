@@ -12,11 +12,6 @@ const router = createRouter({
       component: PortfolioView
     },
     {
-      path: '/login',
-      name: 'inloggning',
-      component: LoginView
-    },
-    {
       path: '/admin',
       name: 'admin',
       component: AdminView,
@@ -28,7 +23,12 @@ const router = createRouter({
           next('/')
         }
       }*/
-    }
+    },
+    {
+      path: '/login',
+      name: 'inloggning',
+      component: LoginView
+    },
   ]
 })
 

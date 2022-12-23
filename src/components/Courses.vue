@@ -1,66 +1,62 @@
 <template>
-    <Info />
-    <h2>Mina projekt</h2>
+    <h2>Mina lästa kurser</h2>
     <section class="container">
         <table>
             <thead>
-                <th>Namn:</th>
-                <th>Beskrivning:</th>
-                <th>Länk:</th>
+                <th>Kursnamn:</th>
+                <th>Kompetens:</th>
+                <th>Kursplan:</th>
             </thead>
             <tbody>
                 <tr class="menu-item">
-                    <td><input v-model="name" type="text" id="input-name" /></td>
-                    <td><input v-model="desc" type="text" id="input-desc" /></td>
-                    <td><input v-model="link" type="text" id="input-link" /></td>
-                    <td v-if="addBtn == true" id="btn-add"><input type="submit" value="Lägg till" @click="addProject()" class="add-btn" id="add-project" style="display:block" /></td>
-                    <td v-if="updateBtn == true" id="btn-update"><input type="submit" value="Uppdatera" @click="updateProject()" class="update-btn" id="update-project" style="display:block" /></td>
+                    <td><input v-model="course" type="text" id="input-course" /></td>
+                    <td><input v-model="knowledge" type="text" id="input-knowledge" /></td>
+                    <td><input v-model="syllabus" type="text" id="input-syllabus" /></td>
+                    <td v-if="addCourseBtn == true" id="btn-addCourse"><input type="submit" value="Lägg till" @click="addCourse()" class="addCourse-btn" id="add-course" style="display:block" /></td>
+                    <td v-if="updateCourseBtn == true" id="btn-updateCourse"><input type="submit" value="Uppdatera" @click="updateCourse()" class="updateCourse-btn" id="update-course" style="display:block" /></td>
                     <td></td>
                 </tr>
-                <!--Loop through and show projects -->
-                <Project @projectDeleted="getProjects()" @updateProject="getProjectById" v-for="project in projects" :project="project" :key="project._id" /> 
+                <!--Loop through and show courses -->
+                <tr v-for="course in courses" :course="course" :key="course._id">
+                    <td class="course">{{course.name}}</td>
+                    <td class="knowledge">{{course.knowledge}}</td>
+                    <td class="syllabus">{{course.syllabus}}</td>
+                    <td class="update"><input type="button" @click="getCourseById(course._id)" value="Ändra" /></td>
+                    <td class="del"><input type="button" @click="deleteCourse(course._id)" value="Radera" /></td>
+                </tr>
             </tbody>
         </table>
         <p v-if="message == true" class="text-danger">Du måste fylla i alla * obligatoriska fält</p>
-        <p v-if="saved == true" class="text-success">Projektet är sparat</p>
-        <p v-if="updated == true" class="text-success">Projektet är uppdaterat</p>
+        <p v-if="saved == true" class="text-success">Kursen är sparad</p>
+        <p v-if="updated == true" class="text-success">Kursen är uppdaterad</p>
     </section>
-    <Courses />
 </template>
 
 <script>
-import Project from '../components/Project.vue'
-import Info from '../components/Info.vue'
-import Courses from '../components/Courses.vue'
 
 export default {
     data() {
         return {
-            projects: [],
-            name: "",
-            desc: "",
-            link: "",
+            courses: [],
+            course: "",
+            knowledge: "",
+            syllabus: "",
             id: "",
             message: false,
             saved: false,
             updated: false,
-            addBtn: true,
-            updateBtn: false
+            addCourseBtn: true,
+            updateCourseBtn: false
         }
     },
-    components: {
-        Project,
-        Info,
-        Courses
-    },    
     methods: {
-        async getProjects() {
+        async getCourses() {
 
             //Get saved token
             //const token = localStorage.getItem('token'); 
 
             //Fetch, turn response into json and save in data variable
-            const resp = await fetch("http://127.0.0.1:3000/projects/", {
+            const resp = await fetch("http://127.0.0.1:3000/courses/", {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
@@ -72,51 +68,51 @@ export default {
             const data = await resp.json();
 
             //Save response in products array
-            this.projects = data;  
+            this.courses = data;  
         },
-        async addProject() {
+        async addCourse() {
             //Get saved token
             //const token = localStorage.getItem('token'); 
 
             //Control if input is correct else show error message. If correct save input in body to post
-            if(this.name.length != "" && this.desc.length != "" && this.link.length != "") {
+            if(this.course.length != "" && this.knowledge.length != "" && this.syllabus.length != "") {
                 
-                let projectBody = {
-                    name: this.name,
-                    description: this.desc,
-                    link: this.link
+                let courseBody = {
+                    name: this.course,
+                    knowledge: this.knowledge,
+                    syllabus: this.syllabus
                 };
 
-                //Add product to API
-                const resp = await fetch("http://127.0.0.1:3000/projects", {
+                //Add course to API
+                const resp = await fetch("http://127.0.0.1:3000/courses", {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",
                         "Content-type": "application/json",
                         //'Authorization': "Bearer " + token
                     },
-                    body: JSON.stringify(projectBody)
+                    body: JSON.stringify(courseBody)
                 });
 
                 const data = await resp.json();
 
                 // Set default values to input fields after posting
-                this.name = "",
-                this.desc = "",
-                this.link = "", 
+                this.course = "",
+                this.knowledge = "",
+                this.syllabus = "", 
                 this.saved = true,
                 this.updated = false,
                 this.message = false
-                this.getProjects();
+                this.getCourses();
             } else {
                 this.message = true;
             }
         },
-        async getProjectById(id) {
+        async getCourseById(id) {
             //Get saved token
             //const token = localStorage.getItem('token'); 
             //Fetch, turn response into json and save in data variable
-            const resp = await fetch("http://127.0.0.1:3000/projects/" + id, {
+            const resp = await fetch("http://127.0.0.1:3000/courses/" + id, {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
@@ -128,55 +124,71 @@ export default {
             const data = await resp.json();
 
             //Show response in input
-            this.name = data['name'],
-            this.desc = data['description'],
-            this.link = data['link'],
+            this.course = data['name'],
+            this.knowledge = data['knowledge'],
+            this.syllabus = data['syllabus'],
             this.id = data['_id'],
-            this.updateBtn = true,
-            this.addBtn = false
+            this.updateCourseBtn = true,
+            this.addCourseBtn = false
         },
-        async updateProject() {
+        async updateCourse() {
             //Get saved token
             //const token = localStorage.getItem('token'); 
 
             let id = this.id;
 
             //Control if input is correct else show error message. If correct save input in body to post
-            if(this.name.length != "" && this.desc.length != "" && this.link.length != "") {
+            if(this.course.length != "" && this.knowledge.length != "" && this.syllabus.length != "") {
                 
-                let projectBody = {
-                    name: this.name,
-                    description: this.desc,
-                    link: this.link
+                let courseBody = {
+                    name: this.course,
+                    knowledge: this.knowledge,
+                    syllabus: this.syllabus
                 };
 
                 //Add project to API
-                const resp = await fetch("http://127.0.0.1:3000/projects/" + id, {
+                const resp = await fetch("http://127.0.0.1:3000/courses/" + id, {
                     method: "PUT",
                     headers: {
                         "Accept": "application/json",
                         "Content-type": "application/json"
                         //'Authorization': "Bearer " + token
                     },
-                    body: JSON.stringify(projectBody)
+                    body: JSON.stringify(courseBody)
                 });
 
                 const data = await resp.json();
 
                 // Set default values to input fields after posting
-                this.name = "",
-                this.desc = "",
-                this.link = "",
+                this.course = "",
+                this.knowledge = "",
+                this.syllabus = "",
                 this.updated = true,
                 this.saved = false,
                 this.message = false,
-                this.updateBtn = false,
-                this.addBtn = true,
-                this.getProjects();
+                this.updateCourseBtn = false,
+                this.addCourseBtn = true,
+                this.getCourses();
             } 
+        },
+        async deleteCourse(id) {
+
+            //Get saved token
+            //const token = localStorage.getItem('token'); 
+
+            //Delete course in database
+            const resp = await fetch("http://127.0.0.1:3000/courses/" + id, {
+            method: "DELETE",
+            headers: {
+                "Accept": "application/json",
+                "Content-type": "application/json"
+                //'Authorization': "Bearer " + token
+            }
+            });
+            this.getCourses();
         }
     }, mounted() {
-        this.getProjects();
+        this.getCourses();
     }
 }
 </script>
