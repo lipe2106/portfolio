@@ -36,7 +36,7 @@ import { RouterLink } from 'vue-router';
             //Get saved token
             //const token = localStorage.getItem('token'); 
 
-            //Delete product in database
+            //Delete project in database
             const resp = await fetch("http://127.0.0.1:3000/projects/" + id, {
             method: "DELETE",
             headers: {
