@@ -1,10 +1,10 @@
 <template>
     <header>
         <div class="header-container">
-            <img src="../assets/jag.jpg" alt="Profilbild" />
             <div class="h1-container">
-                <h1>{{ name }}</h1>
-                <h2>{{ title }}</h2>
+                <h1>ADMIN</h1>
+                <h2>{{ name }}</h2>
+                <h3>{{ title }}</h3>
             </div>
         </div>
     </header>
@@ -64,7 +64,7 @@
 
 header {
     background-color: #E5E5E5;
-    height: 350px;
+    height: 300px;
 }
 
 img {
@@ -77,12 +77,16 @@ img {
 .h1-container {
     background-color: #E5E5E5;
     position: absolute;
-    top: 45%;
-    right: 0;
+    top: 50px;
+    left: 0;
     width: 61%;
 }
 
 h1 {
+    font-family: 'Cinzel', serif;
+}
+
+h2 {
     font-family: 'Passions Conflict', cursive;
     font-size: 3.5em;
     font-weight: lighter;
@@ -90,7 +94,7 @@ h1 {
     margin: 0;
 }
 
-h2 {
+h3 {
     font-family: 'Cinzel', serif;
     font-size: 1.5em;
     font-weight: lighter;

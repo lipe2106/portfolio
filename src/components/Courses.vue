@@ -1,31 +1,35 @@
 <template>
-    <h2>Mina lästa kurser</h2>
     <section class="container">
-        <table>
-            <thead>
-                <th>Kursnamn:</th>
-                <th>Kompetens:</th>
-                <th>Kursplan:</th>
-            </thead>
-            <tbody>
-                <tr class="menu-item">
-                    <td><input v-model="course" type="text" id="input-course" /></td>
-                    <td><input v-model="knowledge" type="text" id="input-knowledge" /></td>
-                    <td><input v-model="syllabus" type="text" id="input-syllabus" /></td>
-                    <td v-if="addCourseBtn == true" id="btn-addCourse"><input type="submit" value="Lägg till" @click="addCourse()" class="addCourse-btn" id="add-course" style="display:block" /></td>
-                    <td v-if="updateCourseBtn == true" id="btn-updateCourse"><input type="submit" value="Uppdatera" @click="updateCourse()" class="updateCourse-btn" id="update-course" style="display:block" /></td>
-                    <td></td>
-                </tr>
-                <!--Loop through and show courses -->
-                <tr v-for="course in courses" :course="course" :key="course._id">
-                    <td class="course">{{course.name}}</td>
-                    <td class="knowledge">{{course.knowledge}}</td>
-                    <td class="syllabus">{{course.syllabus}}</td>
-                    <td class="update"><input type="button" @click="getCourseById(course._id)" value="Ändra" /></td>
-                    <td class="del"><input type="button" @click="deleteCourse(course._id)" value="Radera" /></td>
-                </tr>
-            </tbody>
-        </table>
+        <h2>Mina lästa kurser</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <th class="one">Kursnamn:</th>
+                    <th class="two">Kompetens:</th>
+                    <th class="three">Kursplan:</th>
+                    <th class="four"></th>
+                    <th class="five"></th>
+                </thead>
+                <tbody>
+                    <tr class="menu-item">
+                        <td><input v-model="course" type="text" id="input-course" class="input" /></td>
+                        <td><input v-model="knowledge" type="text" id="input-knowledge" class="input" /></td>
+                        <td><input v-model="syllabus" type="text" id="input-syllabus" class="input" /></td>
+                        <td v-if="addCourseBtn == true" id="btn-addCourse"><input type="submit" value="Lägg till" @click="addCourse()" class="addCourse-btn btn" id="add-course" style="display:block" /></td>
+                        <td v-if="updateCourseBtn == true" id="btn-updateCourse"><input type="submit" value="Uppdatera" @click="updateCourse()" class="updateCourse-btn btn" id="update-course" style="display:block" /></td>
+                        <td></td>
+                    </tr>
+                    <!--Loop through and show courses -->
+                    <tr v-for="course in courses" :course="course" :key="course._id">
+                        <td class="course">{{course.name}}</td>
+                        <td class="knowledge">{{course.knowledge}}</td>
+                        <td class="syllabus">{{course.syllabus}}</td>
+                        <td class="update"><input type="button" @click="getCourseById(course._id)" value="Ändra" class="btn" /></td>
+                        <td class="del"><input type="button" @click="deleteCourse(course._id)" value="Radera" class="btn" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <p v-if="message == true" class="text-danger">Du måste fylla i alla * obligatoriska fält</p>
         <p v-if="saved == true" class="text-success">Kursen är sparad</p>
         <p v-if="updated == true" class="text-success">Kursen är uppdaterad</p>
@@ -196,29 +200,115 @@ export default {
 <style scoped>
   
     .container {
-        margin-top: 10%;
-        padding-bottom: 15%;
+        padding-bottom: 3%;
         width: 100%;
     }
+
+    h2 {
+        font-family: 'Cinzel', serif;
+        font-size: 1.2em;
+        margin-bottom: 0%;
+    }
     .btn {
-        background-color: #EFEEEE;
-        border: 0.5px solid #C4C4C4;
+        background-color: rgb(235, 235, 235);
+        border: 1px solid gray;
+        padding: 1.5% 3%;
+        border-radius: 0%;
+        height: 22px;
+        width: 100%;
+    }
+
+    .addCourse-btn, .updateCourse-btn {
+        width: 235%;
+    }
+
+    .table-container {
+        overflow-x: auto;
     }
 
     table {
-        background-color: #EFEEEE;
+        background-color: white;
         width: 100%;
-        margin-top: 5%;
+        border-collapse: collapse;
+        border: 0.5px solid gray;
+        border-bottom: 0.7px solid gray;
+        table-layout: fixed;
     }
 
     thead {
-        background-color: #E5E5E5;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        text-align: left;
     }
 
     th {
-        padding: 0.5% 1%;
-        font-weight: 600;
-        background-color: rgb(255, 217, 1);
+        padding: 1% 1%;
+        font-weight: 200;
     }
 
+    td {
+        border-bottom: 0.5px solid lightgray;
+        padding: 0.5% 1%;
+    }
+
+    .input {
+        width: 95%;
+        border-radius: 0%;
+        border: 0.5px solid gray;
+        height: 20px;
+        padding-left: 2%;
+        color: dimgray;
+    }
+
+    .course {
+        width: 15%;
+        padding-left: 1%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .knowledge {
+        width: 20%;
+        padding-left: 1%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .syllabus {
+        width: 18%;
+        padding-left: 1%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .update {
+        width: 5%;
+    }
+
+    .del {
+        width: 5%;
+    }
+
+    .one {
+        width: 15%;
+    }
+
+    .two {
+        width: 20%;
+    }
+
+    .three {
+        width: 18%;
+    }
+
+    .four {
+        width: 5%;
+    }
+
+    .five {
+        width: 5%;
+    }
 </style>

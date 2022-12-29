@@ -1,28 +1,30 @@
 <template>
-        <h2>Information</h2>
     <section class="container">
-        <table>
-            <tr>
-                <td class="one">Mitt namn: </td>
-                <td class="two"><input v-model="myName" type="text" id="my-name" class="input" /></td>
-                <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
-            </tr>
-            <tr>
-                <td class="one">Beskrivning av mig: </td>
-                <td class="two"><input v-model="myDesc" type="text" id="my-desc" class="input" /></td>
-                <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
-            </tr>
-            <tr>
-                <td class="one">Citat: </td>
-                <td class="two"><input v-model="myQuote" type="text" id="my-quote" class="input" /></td>
-                <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
-            </tr>
-            <tr>
-                <td class="one">Titel på portfolio: </td>
-                <td class="two"><input v-model="myTitle" type="text" id="my-title" class="input" /></td>
-                <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
-            </tr>
-        </table>
+        <h2>Information</h2>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <td class="one">Mitt namn: </td>
+                    <td class="two"><input v-model="myName" type="text" id="my-name" class="input" /></td>
+                    <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
+                </tr>
+                <tr>
+                    <td class="one">Beskrivning av mig: </td>
+                    <td class="two"><input v-model="myDesc" type="text" id="my-desc" class="input" /></td>
+                    <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
+                </tr>
+                <tr>
+                    <td class="one">Citat: </td>
+                    <td class="two"><input v-model="myQuote" type="text" id="my-quote" class="input" /></td>
+                    <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
+                </tr>
+                <tr>
+                    <td class="one">Titel på portfolio: </td>
+                    <td class="two"><input v-model="myTitle" type="text" id="my-title" class="input" /></td>
+                    <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
+                </tr>
+            </table>
+        </div>
         <p v-if="message == true" class="text-danger">Du måste fylla i alla * obligatoriska fält</p>
         <p v-if="updated == true" class="text-success">Informationen är uppdaterat</p>
     </section>
@@ -185,14 +187,25 @@ export default {
     .container {
         margin-top: 1%;
         padding-bottom: 1%;
- }
+    }
+
+    h2 {
+        font-family: 'Cinzel', serif;
+        font-size: 1.2em;
+        margin-bottom: 0%;
+    }
     .btn {
         background-color: rgb(235, 235, 235);
         border: 1px solid gray;
-        padding: 1.5% 6%;
+        padding: 1.5%;
         border-radius: 0%;
         height: 22px;
         margin-right: 0%;
+        width: 95%;
+    }
+
+    .table-container {
+        overflow-x: auto;
     }
 
     table {
@@ -200,7 +213,7 @@ export default {
         width: 100%;
         border-collapse: collapse;
         border: 0.5px solid gray;
-        border-bottom: 1px solid gray;
+        border-bottom: 0.7px solid gray;
     }
 
     td {
@@ -225,5 +238,6 @@ export default {
         border: 0.5px solid gray;
         height: 20px;
         padding-left: 2%;
+        color: dimgray;
     }
 </style>

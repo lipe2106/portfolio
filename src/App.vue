@@ -30,7 +30,6 @@ export default {
     background-color: #E5E5E5;
   }
 
-
   .content-container {
     width: 80%;
     max-width: 1000px;
@@ -42,5 +41,7 @@ export default {
       width: 100%;
       padding-bottom: 20%;
   }
+
+ 
 
 </style>

@@ -1,29 +1,31 @@
 <template>
-    <Header :headerChange="headerChange" />
+    <AdminHeader :headerChange="headerChange" />
     <Info @infoUpdated="updateHeader"  />
     <section class="container">
         <h2>Mina projekt</h2>
-        <table>
-            <thead>
-                <th class="one">Namn:</th>
-                <th class="two">Beskrivning:</th>
-                <th class="three">Länk:</th>
-                <th class="four"></th>
-                <th class="five"></th>
-            </thead>
-            <tbody>
-                <tr class="add-item">
-                    <td class="one"><input v-model="name" type="text" id="input-name" class="input" /></td>
-                    <td class="two"><input v-model="desc" type="text" id="input-desc" class="input" /></td>
-                    <td class="three"><input v-model="link" type="text" id="input-link" class="input" /></td>
-                    <td v-if="addBtn == true" id="btn-add" class="four"><input type="submit" value="Lägg till" @click="addProject()" class="add-btn btn" id="add-project" style="display:block" /></td>
-                    <td v-if="updateBtn == true" id="btn-update" class="five"><input type="submit" value="Uppdatera" @click="updateProject()" class="update-btn btn" id="update-project" style="display:block" /></td>
-                    <td></td>
-                </tr>
-                <!--Loop through and show projects -->
-                <Project @projectDeleted="getProjects()" @updateProject="getProjectById" v-for="project in projects" :project="project" :key="project._id" /> 
-            </tbody>
-        </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <th class="one">Namn:</th>
+                    <th class="two">Beskrivning:</th>
+                    <th class="three">Länk:</th>
+                    <th class="four"></th>
+                    <th class="five"></th>
+                </thead>
+                <tbody>
+                    <tr class="add-item">
+                        <td class="one"><input v-model="name" type="text" id="input-name" class="input" /></td>
+                        <td class="two"><input v-model="desc" type="text" id="input-desc" class="input" /></td>
+                        <td class="three"><input v-model="link" type="text" id="input-link" class="input" /></td>
+                        <td v-if="addBtn == true" id="btn-add" class="four"><input type="submit" value="Lägg till" @click="addProject()" class="add-btn btn" id="add-project" style="display:block" /></td>
+                        <td v-if="updateBtn == true" id="btn-update" class="five"><input type="submit" value="Uppdatera" @click="updateProject()" class="update-btn btn" id="update-project" style="display:block" /></td>
+                        <td></td>
+                    </tr>
+                    <!--Loop through and show projects -->
+                    <Project @projectDeleted="getProjects()" @updateProject="getProjectById" v-for="project in projects" :project="project" :key="project._id" /> 
+                </tbody>
+            </table>
+        </div>
         <p v-if="message == true" class="text-danger">Du måste fylla i alla * obligatoriska fält</p>
         <p v-if="saved == true" class="text-success">Projektet är sparat</p>
         <p v-if="updated == true" class="text-success">Projektet är uppdaterat</p>
@@ -35,7 +37,7 @@
 import Project from '../components/Project.vue'
 import Info from '../components/Info.vue'
 import Courses from '../components/Courses.vue'
-import Header from '../components/Header.vue'
+import AdminHeader from '../components/AdminHeader.vue'
 
 export default {
     data() {
@@ -57,7 +59,7 @@ export default {
         Project,
         Info,
         Courses,
-        Header
+        AdminHeader
     },    
     methods: {
         async getProjects() {
@@ -196,6 +198,12 @@ export default {
         margin-top: 3%;
         margin-bottom: 5%;
     }
+
+    h2 {
+        font-family: 'Cinzel', serif;
+        font-size: 1.2em;
+        margin-bottom: 0%;
+    }
     .btn {
         background-color: rgb(235, 235, 235);
         border: 1px solid gray;
@@ -203,7 +211,11 @@ export default {
         border-radius: 0%;
         height: 22px;
         margin-left: 20%;
-        width: 125px;
+        width: 190%;
+    }
+
+    .table-container {
+        overflow-x: auto;
     }
 
     table {
@@ -211,7 +223,7 @@ export default {
         width: 100%;
         border-collapse: collapse;
         border: 0.5px solid gray;
-        border-bottom: 1px solid gray;
+        border-bottom: 0.7px solid gray;
         table-layout: fixed;
     }
 
@@ -226,11 +238,18 @@ export default {
         font-weight: 200;
     }
 
+    td {
+        border-bottom: 0.5px solid lightgray;
+        padding: 0.5%;
+    }
+
     .input {
         width: 95%;
         border-radius: 0%;
         border: 0.5px solid gray;
         height: 20px;
+        padding-left: 2%;
+        color: dimgray;
     }
 
     .one {

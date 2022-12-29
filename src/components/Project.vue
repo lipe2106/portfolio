@@ -92,7 +92,7 @@ import { RouterLink } from 'vue-router';
         padding: 1.5% 2%;
         border-radius: 0%;
         height: 22px;
-        width: 55px;
+        width: 85%;
         margin-left: 15%;
     }
 
