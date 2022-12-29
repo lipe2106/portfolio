@@ -1,21 +1,23 @@
 <template>
     <Header :headerChange="headerChange" />
     <Info @infoUpdated="updateHeader"  />
-    <h2>Mina projekt</h2>
     <section class="container">
+        <h2>Mina projekt</h2>
         <table>
             <thead>
-                <th>Namn:</th>
-                <th>Beskrivning:</th>
-                <th>Länk:</th>
+                <th class="one">Namn:</th>
+                <th class="two">Beskrivning:</th>
+                <th class="three">Länk:</th>
+                <th class="four"></th>
+                <th class="five"></th>
             </thead>
             <tbody>
-                <tr class="menu-item">
-                    <td><input v-model="name" type="text" id="input-name" /></td>
-                    <td><input v-model="desc" type="text" id="input-desc" /></td>
-                    <td><input v-model="link" type="text" id="input-link" /></td>
-                    <td v-if="addBtn == true" id="btn-add"><input type="submit" value="Lägg till" @click="addProject()" class="add-btn" id="add-project" style="display:block" /></td>
-                    <td v-if="updateBtn == true" id="btn-update"><input type="submit" value="Uppdatera" @click="updateProject()" class="update-btn" id="update-project" style="display:block" /></td>
+                <tr class="add-item">
+                    <td class="one"><input v-model="name" type="text" id="input-name" class="input" /></td>
+                    <td class="two"><input v-model="desc" type="text" id="input-desc" class="input" /></td>
+                    <td class="three"><input v-model="link" type="text" id="input-link" class="input" /></td>
+                    <td v-if="addBtn == true" id="btn-add" class="four"><input type="submit" value="Lägg till" @click="addProject()" class="add-btn btn" id="add-project" style="display:block" /></td>
+                    <td v-if="updateBtn == true" id="btn-update" class="five"><input type="submit" value="Uppdatera" @click="updateProject()" class="update-btn btn" id="update-project" style="display:block" /></td>
                     <td></td>
                 </tr>
                 <!--Loop through and show projects -->
@@ -191,32 +193,66 @@ export default {
 <style scoped>
   
     .container {
-        margin-top: 10%;
-        padding-bottom: 15%;
+        margin-top: 3%;
+        margin-bottom: 5%;
     }
     .btn {
-        background-color: #EFEEEE;
-        border: 0.5px solid #C4C4C4;
+        background-color: rgb(235, 235, 235);
+        border: 1px solid gray;
+        padding: 1.5% 3%;
+        border-radius: 0%;
+        height: 22px;
+        margin-left: 20%;
+        width: 125px;
     }
 
     table {
-        background-color: #EFEEEE;
+        background-color: white;
         width: 100%;
-        margin-top: 5%;
+        border-collapse: collapse;
+        border: 0.5px solid gray;
+        border-bottom: 1px solid gray;
+        table-layout: fixed;
     }
 
     thead {
-        background-color: #E5E5E5;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        text-align: left;
     }
 
     th {
-        padding: 0.5% 1%;
-        font-weight: 600;
+        padding: 1% 1%;
+        font-weight: 200;
     }
 
-    tr {
-        border: 1px solid black;
+    .input {
+        width: 95%;
+        border-radius: 0%;
+        border: 0.5px solid gray;
+        height: 20px;
     }
 
-   
+    .one {
+        width: 10%;
+        padding-left: 1%;
+    }
+
+    .two {
+        width: 20%;
+        padding-left: 4%;
+    }
+
+    .three {
+        width: 20%;
+        padding-left: 1%;
+    }
+
+    .four {
+        width: 5%;
+    }
+
+    .five {
+        width: 5%;
+    }
 </style>

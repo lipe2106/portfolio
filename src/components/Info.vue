@@ -3,23 +3,23 @@
     <section class="container">
         <table>
             <tr>
-                <td>Mitt namn: </td>
-                <td><input v-model="myName" type="text" id="my-name" /></td>
+                <td class="one">Mitt namn: </td>
+                <td class="two"><input v-model="myName" type="text" id="my-name" class="input" /></td>
                 <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
             </tr>
             <tr>
-                <td>Beskrivning av mig: </td>
-                <td><input v-model="myDesc" type="text" id="my-desc" /></td>
+                <td class="one">Beskrivning av mig: </td>
+                <td class="two"><input v-model="myDesc" type="text" id="my-desc" class="input" /></td>
                 <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
             </tr>
             <tr>
-                <td>Citat: </td>
-                <td><input v-model="myQuote" type="text" id="my-quote" /></td>
+                <td class="one">Citat: </td>
+                <td class="two"><input v-model="myQuote" type="text" id="my-quote" class="input" /></td>
                 <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
             </tr>
             <tr>
-                <td>Titel på portfolio: </td>
-                <td><input v-model="myTitle" type="text" id="my-title" /></td>
+                <td class="one">Titel på portfolio: </td>
+                <td class="two"><input v-model="myTitle" type="text" id="my-title" class="input" /></td>
                 <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
             </tr>
         </table>
@@ -188,19 +188,42 @@ export default {
  }
     .btn {
         background-color: rgb(235, 235, 235);
-        border: 1px solid goldenrod;
-        padding: 1.5% 3%;
-        border-radius: 3.5px;
+        border: 1px solid gray;
+        padding: 1.5% 6%;
+        border-radius: 0%;
+        height: 22px;
+        margin-right: 0%;
     }
 
     table {
         background-color: white;
         width: 100%;
         border-collapse: collapse;
+        border: 0.5px solid gray;
+        border-bottom: 1px solid gray;
     }
 
     td {
         padding: 0.5%;
         border-bottom: 0.5px solid lightgray;
+    }
+
+    .one {
+        width: 20%;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        padding-left: 1.5%;
+    }
+
+    .two {
+        width: 70%;
+    }
+
+    .input {
+        width: 90%;
+        border-radius: 0%;
+        border: 0.5px solid gray;
+        height: 20px;
+        padding-left: 2%;
     }
 </style>

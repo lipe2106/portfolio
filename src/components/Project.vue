@@ -4,8 +4,8 @@
             <td class="name">{{project.name}}</td>
             <td class="desc">{{project.description}}</td>
             <td class="link">{{project.link}}</td>
-            <td class="update"><input type="button" @click="updateProject(project._id)" value="Ändra" /></td>
-            <td class="del"><input type="button" @click="deleteProject(project._id)" value="Radera" /></td>
+            <td class="update"><input type="button" @click="updateProject(project._id)" value="Ändra" class="btn" /></td>
+            <td class="del"><input type="button" @click="deleteProject(project._id)" value="Radera" class="btn delete" /></td>
         </tr>
 </template>
 
@@ -53,25 +53,47 @@ import { RouterLink } from 'vue-router';
 
 <style scoped>
 
+    td {
+        border-bottom: 0.5px solid lightgray;
+        padding: 0.5% 1%;
+    }
+
     .name {
-        width: 37%;
+        width: 20%;
+        white-space: nowrap;
     }
 
     .desc {
         width: 20%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-left: 4%;
     }
 
     .link {
-        width: 15%;
+        width: 20%;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    tr {
-        border: 0.5px solid #C4C4C4;
-        border-collapse: collapse;
+    .update {
+        width: 5%;
     }
 
-    td {
-        padding: 0.5% 1%;
+    .del {
+        width: 5%;
+        padding-left: 0%;
+    }
+
+    .btn {
+        background-color: rgb(235, 235, 235);
+        border: 1px solid gray;
+        padding: 1.5% 2%;
+        border-radius: 0%;
+        height: 22px;
+        width: 55px;
+        margin-left: 15%;
     }
 
 </style>
