@@ -31,6 +31,7 @@
         <p v-if="updated == true" class="text-success">Projektet är uppdaterat</p>
     </section>
     <Courses />
+    <Work />
 </template>
 
 <script>
@@ -38,6 +39,7 @@ import Project from '../components/Project.vue'
 import Info from '../components/Info.vue'
 import Courses from '../components/Courses.vue'
 import AdminHeader from '../components/AdminHeader.vue'
+import Work from '../components/Work.vue'
 
 export default {
     data() {
@@ -59,7 +61,8 @@ export default {
         Project,
         Info,
         Courses,
-        AdminHeader
+        AdminHeader,
+        Work
     },    
     methods: {
         async getProjects() {

@@ -1,38 +1,38 @@
 <template>
     <section class="container">
-        <h2>Mina lästa kurser</h2>
+        <h2>Mina tidigare arbetsplatser</h2>
         <div class="table-container">
             <table>
                 <thead>
-                    <th class="one">Kursnamn:</th>
-                    <th class="two">Kompetens:</th>
-                    <th class="three">Kursplan:</th>
+                    <th class="one">Företag:</th>
+                    <th class="two">Jobbtitel:</th>
+                    <th class="three">Period:</th>
                     <th class="four"></th>
                     <th class="five"></th>
                 </thead>
                 <tbody>
                     <tr class="menu-item">
-                        <td><input v-model="course" type="text" id="input-course" class="input" /></td>
-                        <td><input v-model="knowledge" type="text" id="input-knowledge" class="input" /></td>
-                        <td><input v-model="syllabus" type="text" id="input-syllabus" class="input" /></td>
-                        <td v-if="addCourseBtn == true" id="btn-addCourse"><input type="submit" value="Lägg till" @click="addCourse()" class="addCourse-btn btn" id="add-course" style="display:block" /></td>
-                        <td v-if="updateCourseBtn == true" id="btn-updateCourse"><input type="submit" value="Uppdatera" @click="updateCourse()" class="updateCourse-btn btn" id="update-course" style="display:block" /></td>
+                        <td><input v-model="company" type="text" id="input-company" class="input" /></td>
+                        <td><input v-model="jobtitle" type="text" id="input-jobtitle" class="input" /></td>
+                        <td><input v-model="period" type="text" id="input-period" class="input" /></td>
+                        <td v-if="addWorkBtn == true" id="btn-addWork"><input type="submit" value="Lägg till" @click="addWork()" class="addWork-btn btn" id="add-work" style="display:block" /></td>
+                        <td v-if="updateWorkBtn == true" id="btn-updateWork"><input type="submit" value="Uppdatera" @click="updateWork()" class="updateWork-btn btn" id="update-work" style="display:block" /></td>
                         <td></td>
                     </tr>
-                    <!--Loop through and show courses -->
-                    <tr v-for="course in courses" :course="course" :key="course._id">
-                        <td class="course">{{course.name}}</td>
-                        <td class="knowledge">{{course.knowledge}}</td>
-                        <td class="syllabus">{{course.syllabus}}</td>
-                        <td class="update"><input type="button" @click="getCourseById(course._id)" value="Ändra" class="btn" /></td>
-                        <td class="del"><input type="button" @click="deleteCourse(course._id)" value="Radera" class="btn" /></td>
+                    <!--Loop through and show work -->
+                    <tr v-for="work in work" :work="work" :key="work._id">
+                        <td class="company">{{work.company}}</td>
+                        <td class="jobtitle">{{work.title}}</td>
+                        <td class="period">{{work.period}}</td>
+                        <td class="update"><input type="button" @click="getWorkById(work._id)" value="Ändra" class="btn" /></td>
+                        <td class="del"><input type="button" @click="deleteWork(work._id)" value="Radera" class="btn" /></td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <p v-if="message == true" class="text-danger">Du måste fylla i alla * obligatoriska fält</p>
-        <p v-if="saved == true" class="text-success">Kursen är sparad</p>
-        <p v-if="updated == true" class="text-success">Kursen är uppdaterad</p>
+        <p v-if="saved == true" class="text-success">Jobbet är sparat</p>
+        <p v-if="updated == true" class="text-success">Jobbet är uppdaterat</p>
     </section>
 </template>
 
@@ -41,26 +41,26 @@
 export default {
     data() {
         return {
-            courses: [],
-            course: "",
-            knowledge: "",
-            syllabus: "",
+            work: [],
+            company: "",
+            jobtitle: "",
+            period: "",
             id: "",
             message: false,
             saved: false,
             updated: false,
-            addCourseBtn: true,
-            updateCourseBtn: false
+            addWorkBtn: true,
+            updateWorkBtn: false
         }
     },
     methods: {
-        async getCourses() {
+        async getWork() {
 
             //Get saved token
             //const token = localStorage.getItem('token'); 
 
             //Fetch, turn response into json and save in data variable
-            const resp = await fetch("http://127.0.0.1:3000/courses/", {
+            const resp = await fetch("http://127.0.0.1:3000/work", {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
@@ -71,52 +71,52 @@ export default {
 
             const data = await resp.json();
 
-            //Save response in course array
-            this.courses = data;  
+            //Save response in work array
+            this.work = data;  
         },
-        async addCourse() {
+        async addWork() {
             //Get saved token
             //const token = localStorage.getItem('token'); 
 
             //Control if input is correct else show error message. If correct save input in body to post
-            if(this.course.length != "" && this.knowledge.length != "" && this.syllabus.length != "") {
+            if(this.company.length != "" && this.jobtitle.length != "" && this.period.length != "") {
                 
-                let courseBody = {
-                    name: this.course,
-                    knowledge: this.knowledge,
-                    syllabus: this.syllabus
+                let workBody = {
+                    company: this.company,
+                    title: this.jobtitle,
+                    period: this.period
                 };
 
-                //Add course to API
-                const resp = await fetch("http://127.0.0.1:3000/courses", {
+                //Add work to API
+                const resp = await fetch("http://127.0.0.1:3000/work", {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",
                         "Content-type": "application/json",
                         //'Authorization': "Bearer " + token
                     },
-                    body: JSON.stringify(courseBody)
+                    body: JSON.stringify(workBody)
                 });
 
                 const data = await resp.json();
 
                 // Set default values to input fields after posting
-                this.course = "",
-                this.knowledge = "",
-                this.syllabus = "", 
+                this.company = "",
+                this.jobtitle = "",
+                this.period = "", 
                 this.saved = true,
                 this.updated = false,
                 this.message = false
-                this.getCourses();
+                this.getWork();
             } else {
                 this.message = true;
             }
         },
-        async getCourseById(id) {
+        async getWorkById(id) {
             //Get saved token
             //const token = localStorage.getItem('token'); 
             //Fetch, turn response into json and save in data variable
-            const resp = await fetch("http://127.0.0.1:3000/courses/" + id, {
+            const resp = await fetch("http://127.0.0.1:3000/work/" + id, {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
@@ -128,60 +128,60 @@ export default {
             const data = await resp.json();
 
             //Show response in input
-            this.course = data['name'],
-            this.knowledge = data['knowledge'],
-            this.syllabus = data['syllabus'],
+            this.company = data['company'],
+            this.jobtitle = data['title'],
+            this.period = data['period'],
             this.id = data['_id'],
-            this.updateCourseBtn = true,
-            this.addCourseBtn = false
+            this.updateWorkBtn = true,
+            this.addWorkBtn = false
         },
-        async updateCourse() {
+        async updateWork() {
             //Get saved token
             //const token = localStorage.getItem('token'); 
 
             let id = this.id;
 
             //Control if input is correct else show error message. If correct save input in body to post
-            if(this.course.length != "" && this.knowledge.length != "" && this.syllabus.length != "") {
+            if(this.company.length != "" && this.jobtitle.length != "" && this.period.length != "") {
                 
-                let courseBody = {
-                    name: this.course,
-                    knowledge: this.knowledge,
-                    syllabus: this.syllabus
+                let workBody = {
+                    company: this.company,
+                    title: this.jobtitle,
+                    period: this.period
                 };
 
-                //Add project to API
-                const resp = await fetch("http://127.0.0.1:3000/courses/" + id, {
+                //Add work to API
+                const resp = await fetch("http://127.0.0.1:3000/work/" + id, {
                     method: "PUT",
                     headers: {
                         "Accept": "application/json",
                         "Content-type": "application/json"
                         //'Authorization': "Bearer " + token
                     },
-                    body: JSON.stringify(courseBody)
+                    body: JSON.stringify(workBody)
                 });
 
                 const data = await resp.json();
 
                 // Set default values to input fields after posting
-                this.course = "",
-                this.knowledge = "",
-                this.syllabus = "",
+                this.company = "",
+                this.jobtitle = "",
+                this.period = "",
                 this.updated = true,
                 this.saved = false,
                 this.message = false,
-                this.updateCourseBtn = false,
-                this.addCourseBtn = true,
-                this.getCourses();
+                this.updateWorkBtn = false,
+                this.addWorkBtn = true,
+                this.getWork();
             } 
         },
-        async deleteCourse(id) {
+        async deleteWork(id) {
 
             //Get saved token
             //const token = localStorage.getItem('token'); 
 
-            //Delete course in database
-            const resp = await fetch("http://127.0.0.1:3000/courses/" + id, {
+            //Delete work in database
+            const resp = await fetch("http://127.0.0.1:3000/work/" + id, {
             method: "DELETE",
             headers: {
                 "Accept": "application/json",
@@ -189,10 +189,10 @@ export default {
                 //'Authorization': "Bearer " + token
             }
             });
-            this.getCourses();
+            this.getWork();
         }
     }, mounted() {
-        this.getCourses();
+        this.getWork();
     }
 }
 </script>
@@ -219,7 +219,7 @@ export default {
         font-size: 0.8em;
     }
 
-    .addCourse-btn, .updateCourse-btn {
+    .addWork-btn, .updateWork-btn {
         width: 235%;
     }
 
@@ -261,7 +261,7 @@ export default {
         color: dimgray;
     }
 
-    .course {
+    .company {
         width: 15%;
         padding-left: 1%;
         overflow: hidden;
@@ -269,7 +269,7 @@ export default {
         white-space: nowrap;
     }
 
-    .knowledge {
+    .jobtitle {
         width: 20%;
         padding-left: 1%;
         overflow: hidden;
@@ -277,7 +277,7 @@ export default {
         white-space: nowrap;
     }
 
-    .syllabus {
+    .period {
         width: 18%;
         padding-left: 1%;
         overflow: hidden;

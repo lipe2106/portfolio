@@ -1,6 +1,6 @@
 <template>
     <section class="container">
-        <h2>Information</h2>
+        <h2>Information i portfolion</h2>
         <div class="table-container">
             <table>
                 <tr>
@@ -9,7 +9,7 @@
                     <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
                 </tr>
                 <tr>
-                    <td class="one">Beskrivning av mig: </td>
+                    <td class="one">Om mig: </td>
                     <td class="two"><input v-model="myDesc" type="text" id="my-desc" class="input" /></td>
                     <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
                 </tr>
@@ -19,7 +19,7 @@
                     <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
                 </tr>
                 <tr>
-                    <td class="one">Titel på portfolio: </td>
+                    <td class="one">Titel [portfolio]: </td>
                     <td class="two"><input v-model="myTitle" type="text" id="my-title" class="input" /></td>
                     <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
                 </tr>
