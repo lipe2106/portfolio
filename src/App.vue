@@ -38,10 +38,13 @@ export default {
   }
 
   main {
-      width: 100%;
-      padding-bottom: 20%;
+    width: 100%;
   }
 
- 
+  @media(max-width: 950px) {
+        .content-container {
+            width: 90%;
+        }
+    }
 
 </style>

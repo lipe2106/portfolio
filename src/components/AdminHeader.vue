@@ -79,7 +79,6 @@ img {
     position: absolute;
     top: 50px;
     left: 0;
-    width: 61%;
 }
 
 h1 {
@@ -101,5 +100,35 @@ h3 {
     color: gray;
     margin: 0;
 }
+
+@media (max-width: 750px)
+{
+    .h1-container {
+        top: 20px;
+    }
+
+    header {
+        height: 220px;
+    }
+} 
+
+@media (max-width: 500px)
+{
+    .h1-container {
+        top: 10px;
+    }
+
+    h1, h3 {
+        font-size: 5vw;
+    }
+
+    h2 {
+        font-size: 10vw;
+    }
+
+    header {
+        height: 150px;
+    }
+} 
 
 </style>

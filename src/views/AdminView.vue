@@ -212,6 +212,7 @@ export default {
         height: 22px;
         margin-left: 20%;
         width: 190%;
+        font-size: 0.8em;
     }
 
     .table-container {
@@ -274,4 +275,18 @@ export default {
     .five {
         width: 5%;
     }
+
+    @media (max-width: 850px)
+    {
+        .btn {
+            font-size: 0.6em;
+        }
+    } 
+
+    @media (max-width: 750px)
+    {
+        table {
+            width: 700px;
+        }
+    } 
 </style>

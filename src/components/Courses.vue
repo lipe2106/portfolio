@@ -216,6 +216,7 @@ export default {
         border-radius: 0%;
         height: 22px;
         width: 100%;
+        font-size: 0.8em;
     }
 
     .addCourse-btn, .updateCourse-btn {
@@ -311,4 +312,18 @@ export default {
     .five {
         width: 5%;
     }
+
+    @media (max-width: 850px)
+    {
+        .btn {
+            font-size: 0.6em;
+        }
+    }    
+
+    @media (max-width: 750px)
+    {
+        table {
+            width: 700px;
+        }
+    } 
 </style>

@@ -202,6 +202,7 @@ export default {
         height: 22px;
         margin-right: 0%;
         width: 95%;
+        font-size: 0.8em;
     }
 
     .table-container {
@@ -240,4 +241,18 @@ export default {
         padding-left: 2%;
         color: dimgray;
     }
+
+    @media (max-width: 850px)
+    {
+        .btn {
+            font-size: 0.6em;
+        }
+    } 
+
+    @media (max-width: 750px)
+    {
+        table {
+            width: 700px;
+        }
+    } 
 </style>

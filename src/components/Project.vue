@@ -61,6 +61,8 @@ import { RouterLink } from 'vue-router';
     .name {
         width: 20%;
         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .desc {
@@ -94,6 +96,14 @@ import { RouterLink } from 'vue-router';
         height: 22px;
         width: 85%;
         margin-left: 15%;
+        font-size: 0.8em;
     }
+
+    @media (max-width: 850px)
+    {
+        .btn {
+            font-size: 0.6em;
+        }
+    } 
 
 </style>
