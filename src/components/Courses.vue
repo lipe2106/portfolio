@@ -198,6 +198,7 @@ export default {
     .container {
         margin-top: 10%;
         padding-bottom: 15%;
+        width: 100%;
     }
     .btn {
         background-color: #EFEEEE;
@@ -217,20 +218,7 @@ export default {
     th {
         padding: 0.5% 1%;
         font-weight: 600;
+        background-color: rgb(255, 217, 1);
     }
 
-    @media (min-width: 750px) and (max-width: 991px) {
-        .container {
-            width: 70%;
-            margin-top: 7%;
-        }
-    }
-
-    @media (min-width: 992px) {
-        .container {
-            margin-top: 0%;
-            width: 80%;
-            max-width: 992px;
-        }
-    }
 </style>

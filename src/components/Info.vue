@@ -5,22 +5,22 @@
             <tr>
                 <td>Mitt namn: </td>
                 <td><input v-model="myName" type="text" id="my-name" /></td>
-                <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn" id="update-info" style="display:block" /></td>
+                <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
             </tr>
             <tr>
                 <td>Beskrivning av mig: </td>
                 <td><input v-model="myDesc" type="text" id="my-desc" /></td>
-                <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn" id="update-info" style="display:block" /></td>
+                <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
             </tr>
             <tr>
                 <td>Citat: </td>
                 <td><input v-model="myQuote" type="text" id="my-quote" /></td>
-                <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn" id="update-info" style="display:block" /></td>
+                <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
             </tr>
             <tr>
                 <td>Titel på portfolio: </td>
                 <td><input v-model="myTitle" type="text" id="my-title" /></td>
-                <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn" id="update-info" style="display:block" /></td>
+                <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
             </tr>
         </table>
         <p v-if="message == true" class="text-danger">Du måste fylla i alla * obligatoriska fält</p>
@@ -42,7 +42,8 @@ export default {
             updated: false,
             updateInfoBtn: false
         }
-    },   
+    },
+    emits: [ 'infoUpdated'],
     methods: {
         async getUserInfo() {
 
@@ -170,6 +171,7 @@ export default {
                 this.updateInfoBtn = false,
                 this.addInfoBtn = true
                 this.getUserById();
+                this.$emit('infoUpdated', userBody);
             } 
         }
     }, mounted() {
@@ -181,41 +183,24 @@ export default {
 <style scoped>
   
     .container {
-        margin-top: 10%;
-        padding-bottom: 15%;
-    }
+        margin-top: 1%;
+        padding-bottom: 1%;
+ }
     .btn {
-        background-color: #EFEEEE;
-        border: 0.5px solid #C4C4C4;
+        background-color: rgb(235, 235, 235);
+        border: 1px solid goldenrod;
+        padding: 1.5% 3%;
+        border-radius: 3.5px;
     }
 
     table {
-        background-color: #EFEEEE;
+        background-color: white;
         width: 100%;
-        margin-top: 5%;
+        border-collapse: collapse;
     }
 
-    thead {
-        background-color: #E5E5E5;
-    }
-
-    th {
-        padding: 0.5% 1%;
-        font-weight: 600;
-    }
-
-    @media (min-width: 750px) and (max-width: 991px) {
-        .container {
-            width: 70%;
-            margin-top: 7%;
-        }
-    }
-
-    @media (min-width: 992px) {
-        .container {
-            margin-top: 0%;
-            width: 80%;
-            max-width: 992px;
-        }
+    td {
+        padding: 0.5%;
+        border-bottom: 0.5px solid lightgray;
     }
 </style>

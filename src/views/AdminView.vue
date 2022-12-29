@@ -1,5 +1,6 @@
 <template>
-    <Info />
+    <Header :headerChange="headerChange" />
+    <Info @infoUpdated="updateHeader"  />
     <h2>Mina projekt</h2>
     <section class="container">
         <table>
@@ -32,6 +33,7 @@
 import Project from '../components/Project.vue'
 import Info from '../components/Info.vue'
 import Courses from '../components/Courses.vue'
+import Header from '../components/Header.vue'
 
 export default {
     data() {
@@ -41,6 +43,7 @@ export default {
             desc: "",
             link: "",
             id: "",
+            headerChange: {},
             message: false,
             saved: false,
             updated: false,
@@ -51,7 +54,8 @@ export default {
     components: {
         Project,
         Info,
-        Courses
+        Courses,
+        Header
     },    
     methods: {
         async getProjects() {
@@ -174,6 +178,9 @@ export default {
                 this.addBtn = true,
                 this.getProjects();
             } 
+        },
+        updateHeader(userBody) {
+            this.headerChange = userBody ;
         }
     }, mounted() {
         this.getProjects();
@@ -207,18 +214,9 @@ export default {
         font-weight: 600;
     }
 
-    @media (min-width: 750px) and (max-width: 991px) {
-        .container {
-            width: 70%;
-            margin-top: 7%;
-        }
+    tr {
+        border: 1px solid black;
     }
 
-    @media (min-width: 992px) {
-        .container {
-            margin-top: 0%;
-            width: 80%;
-            max-width: 992px;
-        }
-    }
+   
 </style>
