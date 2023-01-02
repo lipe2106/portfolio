@@ -72,6 +72,7 @@ img {
     height: 300px;
     border-radius: 30% 70% 70% 30% / 50% 50% 50% 50%;
     border: 1.8px solid gray;
+    filter: grayscale(100%);
 }
 
 .h1-container {

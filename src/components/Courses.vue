@@ -33,6 +33,7 @@
         <p v-if="message == true" class="text-danger">Du måste fylla i alla * obligatoriska fält</p>
         <p v-if="saved == true" class="text-success">Kursen är sparad</p>
         <p v-if="updated == true" class="text-success">Kursen är uppdaterad</p>
+        <p v-if="deleted == true" class="text-success">Kursen är raderad</p>
     </section>
 </template>
 
@@ -49,6 +50,7 @@ export default {
             message: false,
             saved: false,
             updated: false,
+            deleted: false,
             addCourseBtn: true,
             updateCourseBtn: false
         }
@@ -106,7 +108,8 @@ export default {
                 this.syllabus = "", 
                 this.saved = true,
                 this.updated = false,
-                this.message = false
+                this.message = false,
+                this.deleted = false,
                 this.getCourses();
             } else {
                 this.message = true;
@@ -168,6 +171,7 @@ export default {
                 this.knowledge = "",
                 this.syllabus = "",
                 this.updated = true,
+                this.deleted = false,
                 this.saved = false,
                 this.message = false,
                 this.updateCourseBtn = false,
@@ -189,6 +193,11 @@ export default {
                 //'Authorization': "Bearer " + token
             }
             });
+
+            this.deleted = true,
+            this.updated = false,
+            this.saved = false,
+            this.message = false,
             this.getCourses();
         }
     }, mounted() {

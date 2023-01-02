@@ -33,6 +33,7 @@
         <p v-if="message == true" class="text-danger">Du måste fylla i alla * obligatoriska fält</p>
         <p v-if="saved == true" class="text-success">Jobbet är sparat</p>
         <p v-if="updated == true" class="text-success">Jobbet är uppdaterat</p>
+        <p v-if="deleted == true" class="text-success">Jobbet är raderat</p>
     </section>
 </template>
 
@@ -49,6 +50,7 @@ export default {
             message: false,
             saved: false,
             updated: false,
+            deleted: false,
             addWorkBtn: true,
             updateWorkBtn: false
         }
@@ -105,6 +107,7 @@ export default {
                 this.jobtitle = "",
                 this.period = "", 
                 this.saved = true,
+                this.deleted = false,
                 this.updated = false,
                 this.message = false
                 this.getWork();
@@ -169,6 +172,7 @@ export default {
                 this.period = "",
                 this.updated = true,
                 this.saved = false,
+                this.deleted = false,
                 this.message = false,
                 this.updateWorkBtn = false,
                 this.addWorkBtn = true,
@@ -189,6 +193,10 @@ export default {
                 //'Authorization': "Bearer " + token
             }
             });
+            this.updated = false,
+            this.saved = false,
+            this.deleted = true,
+            this.message = false,
             this.getWork();
         }
     }, mounted() {
