@@ -11,7 +11,10 @@
         width: 50%;
         margin: auto;
         border-top: 0.5px solid lightgray;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 100;
         color: gray;
+        font-size: 0.8em;
     }
 
     @media (max-width: 850px)

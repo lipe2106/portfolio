@@ -1,11 +1,14 @@
 <template>
     <header>
         <div class="header-container">
-            <img src="../assets/jag.jpg" alt="Profilbild" />
+            <div class="img-container">
+                <img src="../assets/jag.jpg" alt="Profilbild" />
+            </div>
             <div class="h1-container">
                 <h1>{{ name }}</h1>
                 <h2>{{ title }}</h2>
             </div>
+            
         </div>
     </header>
 </template>
@@ -64,22 +67,30 @@
 
 header {
     background-color: #E5E5E5;
-    height: 350px;
+    height: 250px;
+}
+
+.img-container {
+    display: block;
+    margin-top: 50px;
+    width: 100px;
+    height: 100px;
+    transform: rotate(45deg);
+    overflow: hidden;
 }
 
 img {
-    width: 300px;
-    height: 300px;
-    border-radius: 30% 70% 70% 30% / 50% 50% 50% 50%;
-    border: 1.8px solid gray;
-    filter: grayscale(100%);
+    max-width: 100%;
+    transform: rotate(-45deg) scale(1.42);
+    width: 100px;
+    height: 100px;
 }
 
 .h1-container {
     background-color: #E5E5E5;
     position: absolute;
-    top: 45%;
-    right: 0;
+    top: 70px;
+    left: 150px;
     width: 61%;
 }
 

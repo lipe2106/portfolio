@@ -207,6 +207,8 @@ export default {
         font-size: 1.2em;
         margin-bottom: 0%;
     }
+
+    
     .btn {
         background-color: rgb(235, 235, 235);
         border: 1px solid gray;
