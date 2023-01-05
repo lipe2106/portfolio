@@ -2,6 +2,7 @@
         <!--Show projects name, description and link in table row-->
         <tr>
             <td class="name">{{project.name}}</td>
+            <td class="path">{{project.image1}}</td>
             <td class="desc">{{project.description}}</td>
             <td class="link">{{project.link}}</td>
             <td class="update"><input type="button" @click="updateProject(project._id)" value="Ändra" class="btn" /></td>
@@ -57,10 +58,18 @@
     }
 
     .name {
-        width: 20%;
+        width: 15%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    .image {
+        width: 15%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-left: 4%;
     }
 
     .desc {
@@ -68,11 +77,10 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        padding-left: 4%;
     }
 
     .link {
-        width: 20%;
+        width: 10%;
         overflow: hidden;
         text-overflow: ellipsis;
     }

@@ -47,66 +47,6 @@ export default {
     },
     emits: [ 'infoUpdated'],
     methods: {
-        async getUserInfo() {
-
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
-
-            //Fetch, turn response into json and save in data variable
-            const resp = await fetch("http://127.0.0.1:3000/user/", {
-                method: "GET",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-type": "application/json",
-                    //'Authorization': "Bearer " + token
-                }
-            });
-
-            const data = await resp.json();
-
-            //Save response in users array
-            this.users = data;  
-        },
-        async addUserInfo() {
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
-
-            //Control if input is correct else show error message. If correct save input in body to post
-            if(this.myName.length != "" && this.myDesc.length != "" && this.myQuote.length != "" && this.myTitle.length != "") {
-                
-                let userBody = {
-                    name: this.myName,
-                    description: this.myDesc,
-                    quote: this.myQuote,
-                    title: this.myTitle
-                };
-
-                //Add user info to API
-                const resp = await fetch("http://127.0.0.1:3000/user", {
-                    method: "POST",
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-type": "application/json",
-                        //'Authorization': "Bearer " + token
-                    },
-                    body: JSON.stringify(userBody)
-                });
-
-                const data = await resp.json();
-
-                // Set default values to input fields after posting
-                this.myName = "",
-                this.myDesc = "",
-                this.myQuote = "", 
-                this.myTitle = "",
-                this.saved = true,
-                this.updated = false,
-                this.message = false
-                this.getUserInfo();
-            } else {
-                this.message = true;
-            }
-        },
         async getUserById() {
 
             let id = "63a582a8732d6aaaa3550873";
@@ -130,8 +70,7 @@ export default {
             this.myQuote = data['quote'],
             this.myTitle = data['title'],
             this.id = data['_id'],
-            this.updateInfoBtn = true,
-            this.addInfoBtn = false
+            this.updateInfoBtn = true
         },
         async updateUserInfo() {
             //Get saved token
@@ -163,10 +102,6 @@ export default {
                 const data = await resp.json();
 
                 // Set default values to input fields after posting
-                /*this.myName = data['name'],
-                this.myDesc = data['description'],
-                this.myQuote = data['quote'],
-                this.myTitle = data['title'],*/
                 this.updated = true,
                 this.saved = false,
                 this.message = false,

@@ -15,6 +15,7 @@
         font-weight: 100;
         color: gray;
         font-size: 0.8em;
+        margin-bottom: 0%;
     }
 
     @media (max-width: 850px)

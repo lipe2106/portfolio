@@ -11,9 +11,12 @@
     <h2>Mina projekt</h2>
     <div class="project-container">
       <div class="project-card" v-for="project in projects" :project="project" :key="project._id">
-        <img :src="`/img/${ project.image }`"  alt="Bild på projektet" />
-        <h3>{{ project.name }}</h3>
-        <p>{{ project.description }}</p>
+        <RouterLink class="link-dark" :to="{name: `${ project.path }`, params:{id: project._id}}">
+          <img :src="`/img/${ project.image1 }`"  alt="Bild på projektet" />
+          <h3>{{ project.name }}</h3>
+          <p class="description">{{ project.description }}</p>
+          <p>...</p>
+        </RouterLink>
       </div>
     </div>
   </section>
@@ -31,7 +34,7 @@
           <tr v-for="courses in courses" :course="courses" :key="courses._id">
             <td class="one">{{courses.name}}</td>
             <td class="two">{{courses.knowledge}}</td>
-            <td class="three"><a :href=" courses.syllabus "><img src="../assets/link.png" alt="Länkikon" class="link" /></a></td>
+            <td class="three"><a :href=" courses.syllabus "  target="_blank"><img src="../assets/link.png" alt="Länkikon" class="link" /></a></td>
           </tr>
         </tbody>
       </table>
@@ -62,6 +65,8 @@
 
 <script>
 import Header from '../components/Header.vue'
+import { RouterLink } from 'vue-router';
+
 
 export default {
   data() {
@@ -74,7 +79,8 @@ export default {
     }
   },
   components: {
-    Header
+    Header,
+    RouterLink
   },
   methods: {
     async getProjects() {
@@ -174,21 +180,27 @@ export default {
 
 .project-container {
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
 }
 
 .project-card {
   background-color: white;
   width: 94%;
-  width: 180px;
+  max-width: 180px;
   margin: 3%;
   text-align: center;
   border: 0.5px solid lightgray;
 }
 
+a {
+  text-decoration: none;
+}
+
 img {
-  width: 180px;
-  height: 210px;
+  width: 100%;
+  max-width: 180px;
+  height: 200px;
 }
 
 h2, h3 {
@@ -197,6 +209,12 @@ h2, h3 {
   color: gray;
   font-size: 1em;
 
+}
+
+.description {
+  overflow: hidden;
+  padding: 3%;
+  height: 75px;
 }
 
 p, li, blockquote, table {
@@ -284,7 +302,33 @@ td {
     text-align: right;
 }
 
+@media (max-width: 950px) {
 
+  img {
+    width: 100%;
+    max-width: 180px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 90%;
+    margin: auto;
+    align-items: center;
+  }
+
+  .project-cards {
+    width: 100%;
+  }
+
+  img {
+    height: 200px;
+  }
+}
 
 
 </style>

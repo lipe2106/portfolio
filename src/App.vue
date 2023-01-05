@@ -26,6 +26,7 @@ export default {
 
   .page-container {
     position: relative;
+    height: 100%;
     min-height: 100vh;
     background-color: #E5E5E5;
   }

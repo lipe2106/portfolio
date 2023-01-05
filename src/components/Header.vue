@@ -1,24 +1,31 @@
 <template>
     <header>
-        <div class="header-container">
-            <div class="img-container">
-                <img src="../assets/jag.jpg" alt="Profilbild" />
+        <RouterLink to="/portfolio">
+            <div class="header-container">
+                <div class="img-container">
+                    <img src="../assets/jag.jpg" alt="Profilbild" />
+                </div>
+                <div class="h1-container">
+                    <h1>{{ name }}</h1>
+                    <h2>{{ title }}</h2>
+                </div>
             </div>
-            <div class="h1-container">
-                <h1>{{ name }}</h1>
-                <h2>{{ title }}</h2>
-            </div>
-            
-        </div>
+        </RouterLink>
     </header>
 </template>
 <script>
+
+import { RouterLink } from 'vue-router';
+
     export default {
         data() {
             return {
                 title: "",
                 name: ""
             }
+        },
+        components: {
+            RouterLink
         },
         props: ['headerChange'], 
         watch: { 
@@ -109,5 +116,57 @@ h2 {
     color: gray;
     margin: 0;
 }
+
+@media (max-width: 768px)
+{
+    .h1-container {
+        top: 40px;
+    }
+
+    h2 {
+        font-size: 3vw;
+    }
+
+    .img-container {
+        margin-top: 30px;
+    }
+
+    header {
+        height: 200px;
+    }
+} 
+
+
+@media (max-width: 500px)
+{
+    .h1-container {
+        top: 25px;
+        left: 100px;
+    }
+
+    h1 {
+        font-size: 7vw;
+    }
+
+    h2 {
+        font-size: 3vw;
+    }
+
+    header {
+        height: 120px;
+    }
+
+    .img-container {
+        width: 70px;
+        height: 70px;
+        margin-top: 15px;
+    }
+
+    img {
+        width: 70px;
+        height: 70px;
+    }
+} 
+
 
 </style>
