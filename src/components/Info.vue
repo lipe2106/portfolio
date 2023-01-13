@@ -6,22 +6,22 @@
                 <tr>
                     <td class="one">Mitt namn: </td>
                     <td class="two"><input v-model="myName" type="text" id="my-name" class="input" /></td>
-                    <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
+                    <td class="three"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateBtn btn" style="display:block" /></td>
                 </tr>
                 <tr>
                     <td class="one">Om mig: </td>
                     <td class="two"><input v-model="myDesc" type="text" id="my-desc" class="input" /></td>
-                    <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
+                    <td class="three"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="btn" style="display:block" /></td>
                 </tr>
                 <tr>
                     <td class="one">Citat: </td>
                     <td class="two"><input v-model="myQuote" type="text" id="my-quote" class="input" /></td>
-                    <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
+                    <td class="three"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="btn" style="display:block" /></td>
                 </tr>
                 <tr>
                     <td class="one">Titel [portfolio]: </td>
                     <td class="two"><input v-model="myTitle" type="text" id="my-title" class="input" /></td>
-                    <td v-if="updateInfoBtn == true" id="btn-updateInfo"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="updateInfo-btn btn" id="update-info" style="display:block" /></td>
+                    <td class="three"><input type="submit" value="Uppdatera" @click="updateUserInfo()" class="btn" style="display:block" /></td>
                 </tr>
             </table>
         </div>
@@ -41,8 +41,7 @@ export default {
             myQuote: "",
             myTitle: "",
             message: false,
-            updated: false,
-            updateInfoBtn: false
+            updated: false
         }
     },
     emits: [ 'infoUpdated'],
@@ -69,8 +68,7 @@ export default {
             this.myDesc = data['description'],
             this.myQuote = data['quote'],
             this.myTitle = data['title'],
-            this.id = data['_id'],
-            this.updateInfoBtn = true
+            this.id = data['_id']
         },
         async updateUserInfo() {
             //Get saved token
@@ -105,8 +103,6 @@ export default {
                 this.updated = true,
                 this.saved = false,
                 this.message = false,
-                this.updateInfoBtn = false,
-                this.addInfoBtn = true
                 this.getUserById();
                 this.$emit('infoUpdated', userBody);
             } 
@@ -137,7 +133,11 @@ export default {
         height: 22px;
         margin-right: 0%;
         width: 95%;
-        font-size: 0.8em;
+        font-size: 0.6em;
+    }
+
+    .updateBtn {
+        color: black;
     }
 
     .table-container {
@@ -174,7 +174,10 @@ export default {
         border: 0.5px solid gray;
         height: 20px;
         padding-left: 2%;
-        color: dimgray;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 100;
+        color: rgb(68, 68, 68);
+        font-size: 0.8em;
     }
 
     @media (max-width: 850px)

@@ -321,6 +321,13 @@ export default {
         width: 5%;
     }
 
+    tr {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 100;
+        color: rgb(68, 68, 68);
+        font-size: 0.8em;
+    }
+
     @media (max-width: 850px)
     {
         .btn {

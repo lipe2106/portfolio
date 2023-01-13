@@ -11,12 +11,18 @@
     <h2>Mina projekt</h2>
     <div class="project-container">
       <div class="project-card" v-for="project in projects" :project="project" :key="project._id">
-        <RouterLink class="link-dark" :to="{name: `${ project.path }`, params:{id: project._id}}">
+        <RouterLink v-if="project.path" :to="{name: `${ project.path }`, params:{id: project._id}}">
           <img :src="`/img/${ project.image1 }`"  alt="Bild på projektet" />
           <h3>{{ project.name }}</h3>
           <p class="description">{{ project.description }}</p>
           <p>...</p>
         </RouterLink>
+        <div v-else>
+          <img v-if="project.image1 == undefined" src="../assets/image.png" alt="Bild finns ej" class="undefined" />
+          <img v-else :src="`/img/${ project.image1 }`"  alt="Bild på projektet" />
+          <h3>{{ project.name }}</h3>
+          <p class="description">{{ project.description }}</p>
+        </div>
       </div>
     </div>
   </section>
@@ -193,6 +199,11 @@ export default {
   border: 0.5px solid lightgray;
 }
 
+.undefined {
+  width: 100%;
+  height: auto;
+}
+
 a {
   text-decoration: none;
 }
@@ -208,7 +219,6 @@ h2, h3 {
   font-weight: lighter;
   color: gray;
   font-size: 1em;
-
 }
 
 .description {
@@ -220,7 +230,7 @@ h2, h3 {
 p, li, blockquote, table {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 100;
-  color: gray;
+  color: rgb(68, 68, 68);
   font-size: 0.8em;
 }
 
@@ -242,7 +252,7 @@ li {
 
 .user-info {
   background-color: white;
-  padding: 1% 1.5%;
+  padding: 2% 3%;
   border: 0.5px solid lightgray;
 }
 

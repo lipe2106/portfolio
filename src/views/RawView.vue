@@ -12,18 +12,23 @@
         <div class="project-container">
             <div class="project-card">
                 <a :href="`/img/${ image1 }`"><img :src="`/img/${ image1 }`"  alt="Bild på projektet" /></a>
+                <p>Startsida desktop</p>
             </div>
             <div class="project-card">
                 <a :href="`/img/${ image2 }`"><img :src="`/img/${ image2 }`"  alt="Bild på projektet" /></a>
+                <p>Undersida för RAWs meny</p>
             </div>
             <div class="project-card">
                 <a :href="`/img/${ image3 }`"><img :src="`/img/${ image3 }`"  alt="Bild på projektet" /></a>
+                <p>Undersida för bokning av bord</p>
             </div>
             <div class="project-card">
                 <a :href="`/img/${ image4 }`"><img :src="`/img/${ image4 }`"  alt="Bild på projektet" /></a>
+                <p>Om RAW</p>
             </div>
             <div class="project-card">
                 <a :href="`/img/${ image5 }`"><img :src="`/img/${ image5 }`"  alt="Bild på projektet" /></a>
+                <p>Adminsidan</p>
             </div>
         </div>
     </section>
@@ -140,34 +145,36 @@ img {
   width: 100%;
   max-width: 180px;
   height: 200px;
+  margin-bottom: -5%;
 }
 
 @media (max-width: 950px) {
 
-img {
-  width: 100%;
-  max-width: 180px;
-  height: 150px;
-}
+  img {
+    width: 100%;
+    max-width: 180px;
+    height: 150px;
+  }
 }
 
 @media (max-width: 600px) {
-.project-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  width: 90%;
-  margin: auto;
-  align-items: center;
-}
+  .project-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 90%;
+    margin: auto;
+    align-items: center;
+  }
 
-.project-cards {
-  width: 100%;
-}
+  .project-card {
+    width: 100%;
+    padding-bottom: 20%;
+  }
 
-img {
-  height: 200px;
-}
+  img {
+    height: 200px;
+  }
 }
 
 </style>

@@ -7,19 +7,17 @@
             <table>
                 <thead>
                     <th class="one">Namn:</th>
-                    <th class="two">Projektbild:</th>
-                    <th class="three">Beskrivning:</th>
-                    <th class="four">Länk:</th>
+                    <th class="two">Beskrivning:</th>
+                    <th class="three">Länk:</th>
+                    <th class="four"></th>
                     <th class="five"></th>
-                    <th class="six"></th>
                 </thead>
                 <tbody>
                     <tr class="add-item">
                         <td class="one"><input v-model="name" type="text" id="input-name" class="input" /></td>
-                        <td class="two"><input v-model="image" type="text" id="input-image" class="input" /></td>
-                        <td class="three"><input v-model="desc" type="text" id="input-desc" class="input" /></td>
-                        <td class="four"><input v-model="link" type="text" id="input-link" class="input" /></td>
-                        <td v-if="addBtn == true" id="btn-add" class="five"><input type="submit" value="Lägg till" @click="addProject()" class="add-btn btn" id="add-project" style="display:block" /></td>
+                        <td class="two"><input v-model="desc" type="text" id="input-desc" class="input" /></td>
+                        <td class="three"><input v-model="link" type="text" id="input-link" class="input" /></td>
+                        <td v-if="addBtn == true" id="btn-add" class="four"><input type="submit" value="Lägg till" @click="addProject()" class="add-btn btn" id="add-project" style="display:block" /></td>
                         <td v-if="updateBtn == true" id="btn-update" class="five"><input type="submit" value="Uppdatera" @click="updateProject()" class="update-btn btn" id="update-project" style="display:block" /></td>
                         <td></td>
                     </tr>
@@ -48,7 +46,6 @@ export default {
         return {
             projects: [],
             name: "",
-            image: "",
             desc: "",
             link: "",
             id: "",
@@ -70,6 +67,12 @@ export default {
     methods: {
         async getProjects() {
 
+            this.name = "",
+            this.desc = "",
+            this.link = "",
+            this.addBtn = true,
+            this.updateBtn = false
+
             //Get saved token
             //const token = localStorage.getItem('token'); 
 
@@ -86,18 +89,18 @@ export default {
             const data = await resp.json();
 
             //Save response in products array
-            this.projects = data;  
+            this.projects = data;
+
         },
         async addProject() {
             //Get saved token
             //const token = localStorage.getItem('token'); 
 
             //Control if input is correct else show error message. If correct save input in body to post
-            if(this.name.length != "" && this.image.length != "" && this.desc.length != "" && this.link.length != "") {
+            if(this.name.length != "" && this.desc.length != "" && this.link.length != "") {
                 
                 let projectBody = {
                     name: this.name,
-                    image1: this.image,
                     description: this.desc,
                     link: this.link
                 };
@@ -117,7 +120,6 @@ export default {
 
                 // Set default values to input fields after posting
                 this.name = "",
-                this.image = "",
                 this.desc = "",
                 this.link = "", 
                 this.saved = true,
@@ -145,7 +147,6 @@ export default {
 
             //Show response in input
             this.name = data['name'],
-            this.image = data['image1'],
             this.desc = data['description'],
             this.link = data['link'],
             this.id = data['_id'],
@@ -159,11 +160,10 @@ export default {
             let id = this.id;
 
             //Control if input is correct else show error message. If correct save input in body to post
-            if(this.name.length != "" && this.image.length != "" && this.desc.length != "" && this.link.length != "") {
+            if(this.name.length != "" && this.desc.length != "" && this.link.length != "") {
                 
                 let projectBody = {
                     name: this.name,
-                    image1: this.image,
                     description: this.desc,
                     link: this.link
                 };
@@ -183,7 +183,6 @@ export default {
 
                 // Set default values to input fields after posting
                 this.name = "",
-                this.image = "",
                 this.desc = "",
                 this.link = "",
                 this.updated = true,
@@ -216,7 +215,6 @@ export default {
         margin-bottom: 0%;
     }
 
-    
     .btn {
         background-color: rgb(235, 235, 235);
         border: 1px solid gray;
@@ -267,31 +265,34 @@ export default {
     }
 
     .one {
-        width: 15%;
+        width: 10%;
         padding-left: 1%;
     }
 
     .two {
-        width: 15%;
+        width: 25%;
     }
 
     .three {
-        width: 20%;
+        width: 18%;
         padding-left: 1%;
     }
 
     .four {
-        width: 10%;
-        padding-left: 1%;
+        width: 5%;
     }
 
     .five {
         width: 5%;
     }
 
-    .six {
-        width: 5%;
+    tr {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 100;
+        color: rgb(68, 68, 68);
+        font-size: 0.8em;
     }
+
 
     @media (max-width: 850px)
     {

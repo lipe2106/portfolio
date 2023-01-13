@@ -267,7 +267,6 @@ export default {
         border: 0.5px solid gray;
         height: 20px;
         padding-left: 2%;
-        color: dimgray;
     }
 
     .course {
@@ -320,6 +319,13 @@ export default {
 
     .five {
         width: 5%;
+    }
+
+    tr {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 100;
+        color: rgb(68, 68, 68);
+        font-size: 0.8em;
     }
 
     @media (max-width: 850px)

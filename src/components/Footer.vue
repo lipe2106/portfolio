@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <p>Lina Petersson Portfolio 2022 || lina.c.petersson@gmail.com</p>
+        <p>Lina Petersson Portfolio 2023 || lina.c.petersson@gmail.com</p>
     </footer>
 </template>
 
@@ -16,6 +16,7 @@
         color: gray;
         font-size: 0.8em;
         margin-bottom: 0%;
+        margin-top: 3%;
     }
 
     @media (max-width: 850px)
