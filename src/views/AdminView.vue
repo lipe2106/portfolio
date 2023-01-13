@@ -224,6 +224,11 @@ export default {
         margin-left: 20%;
         width: 190%;
         font-size: 0.8em;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: rgb(198, 198, 198);
     }
 
     .table-container {

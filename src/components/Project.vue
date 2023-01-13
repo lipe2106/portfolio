@@ -94,6 +94,11 @@
         width: 85%;
         margin-left: 15%;
         font-size: 0.8em;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: rgb(198, 198, 198);
     }
 
     @media (max-width: 850px)

@@ -134,6 +134,11 @@ export default {
         margin-right: 0%;
         width: 95%;
         font-size: 0.6em;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: rgb(198, 198, 198);
     }
 
     .updateBtn {

@@ -226,6 +226,11 @@ export default {
         height: 22px;
         width: 100%;
         font-size: 0.8em;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: rgb(198, 198, 198);
     }
 
     .addCourse-btn, .updateCourse-btn {
