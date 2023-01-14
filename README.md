@@ -1,29 +1,11 @@
-# portfolio
+# Projekt i kursen JavaScriptbaserad webbutveckling
+Webb- applikation
 
-This template should help get you started developing with Vue 3 in Vite.
+## Syftet med projektet
+Syftet med projektet är att vi ska tillämpa de kunskaper vi lärt oss under kursen för att skapa en mer omfattande och användbar webbplats. En webb- applikation som använder något JavaScript-baserat frontend-ramverk ska skapas och konsumera webbtjänsten som också är skapad inom ramarna för detta projekt. 
 
-## Recommended IDE Setup
+## Repositoryt
+Detta repository innehåller kod för webb- applikationen, d.v.s. min portfolio. Applikationen består dels av en publik webbplats samt en adminsida, är skapad med Vue som frontend- ramverk och använder sig av webbtjänsten med url http://127.0.0.1:3000/ för att läsa ut, lagra, uppdatera och radera information om mig, projekt, kurser och arbetsplatser hjälp av Fetch API och metoderna GET, POST, PUT och DELETE. 
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+## Skapat av
+Lina Petersson

@@ -1,3 +1,4 @@
+<!--Created by Lina Petersson 2023-->
 <template>
     <header>
         <div class="header-container">
@@ -27,15 +28,13 @@
             async getUserById() {
 
                 let id = "63a582a8732d6aaaa3550873";
-                //Get saved token
-                //const token = localStorage.getItem('token'); 
+
                 //Fetch, turn response into json and save in data variable
                 const resp = await fetch("http://127.0.0.1:3000/user/" + id, {
                     method: "GET",
                     headers: {
                         "Accept": "application/json",
                         "Content-type": "application/json"
-                        //'Authorization': "Bearer " + token
                     }
                 });
 

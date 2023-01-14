@@ -1,3 +1,4 @@
+<!--Created by Lina Petersson 2023-->
 <template>
     <footer>
         <p>Lina Petersson Portfolio 2023 || lina.c.petersson@gmail.com</p>

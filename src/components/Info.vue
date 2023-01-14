@@ -1,3 +1,4 @@
+<!--Created by Lina Petersson 2023-->
 <template>
     <section class="container">
         <h2>Information i portfolion</h2>
@@ -49,15 +50,13 @@ export default {
         async getUserById() {
 
             let id = "63a582a8732d6aaaa3550873";
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
+
             //Fetch, turn response into json and save in data variable
             const resp = await fetch("http://127.0.0.1:3000/user/" + id, {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
                     "Content-type": "application/json"
-                    //'Authorization': "Bearer " + token
                 }
             });
 
@@ -71,12 +70,10 @@ export default {
             this.id = data['_id']
         },
         async updateUserInfo() {
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
 
             let id = this.id;
 
-            //Control if input is correct else show error message. If correct save input in body to post
+            //Control if input is correct. If correct save input in body to post
             if(this.myName.length != "" && this.myDesc.length != "" && this.myQuote.length != "" && this.myTitle.length != "") {
                 
                 let userBody = {
@@ -86,13 +83,12 @@ export default {
                     title: this.myTitle
                 };
 
-                //Add project to API
+                //Add info to API
                 const resp = await fetch("http://127.0.0.1:3000/user/" + id, {
                     method: "PUT",
                     headers: {
                         "Accept": "application/json",
                         "Content-type": "application/json"
-                        //'Authorization': "Bearer " + token
                     },
                     body: JSON.stringify(userBody)
                 });

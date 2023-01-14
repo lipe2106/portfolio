@@ -1,3 +1,4 @@
+<!--Created by Lina Petersson 2023-->
 <template>
         <!--Show projects name, description and link in table row-->
         <tr>
@@ -31,16 +32,12 @@
             },
             async deleteProject(id) {
 
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
-
             //Delete project in database
             const resp = await fetch("http://127.0.0.1:3000/projects/" + id, {
             method: "DELETE",
             headers: {
                 "Accept": "application/json",
                 "Content-type": "application/json"
-                //'Authorization': "Bearer " + token
             }
             });
             this.$emit('projectDeleted');

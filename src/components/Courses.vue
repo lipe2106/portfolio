@@ -1,3 +1,4 @@
+<!--Created by Lina Petersson 2023-->
 <template>
     <section class="container">
         <h2>Mina lästa kurser</h2>
@@ -58,16 +59,12 @@ export default {
     methods: {
         async getCourses() {
 
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
-
             //Fetch, turn response into json and save in data variable
             const resp = await fetch("http://127.0.0.1:3000/courses/", {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
-                    "Content-type": "application/json",
-                    //'Authorization': "Bearer " + token
+                    "Content-type": "application/json"
                 }
             });
 
@@ -77,10 +74,8 @@ export default {
             this.courses = data;  
         },
         async addCourse() {
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
 
-            //Control if input is correct else show error message. If correct save input in body to post
+            //Control if input is correct. If correct save input in body to post
             if(this.course.length != "" && this.knowledge.length != "" && this.syllabus.length != "") {
                 
                 let courseBody = {
@@ -94,8 +89,7 @@ export default {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",
-                        "Content-type": "application/json",
-                        //'Authorization': "Bearer " + token
+                        "Content-type": "application/json"
                     },
                     body: JSON.stringify(courseBody)
                 });
@@ -116,15 +110,13 @@ export default {
             }
         },
         async getCourseById(id) {
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
+
             //Fetch, turn response into json and save in data variable
             const resp = await fetch("http://127.0.0.1:3000/courses/" + id, {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
                     "Content-type": "application/json"
-                    //'Authorization': "Bearer " + token
                 }
             });
 
@@ -139,12 +131,10 @@ export default {
             this.addCourseBtn = false
         },
         async updateCourse() {
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
 
             let id = this.id;
 
-            //Control if input is correct else show error message. If correct save input in body to post
+            //Control if input is correct. If correct save input in body to post
             if(this.course.length != "" && this.knowledge.length != "" && this.syllabus.length != "") {
                 
                 let courseBody = {
@@ -153,13 +143,12 @@ export default {
                     syllabus: this.syllabus
                 };
 
-                //Add project to API
+                //Add course to API
                 const resp = await fetch("http://127.0.0.1:3000/courses/" + id, {
                     method: "PUT",
                     headers: {
                         "Accept": "application/json",
                         "Content-type": "application/json"
-                        //'Authorization': "Bearer " + token
                     },
                     body: JSON.stringify(courseBody)
                 });
@@ -181,16 +170,12 @@ export default {
         },
         async deleteCourse(id) {
 
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
-
             //Delete course in database
             const resp = await fetch("http://127.0.0.1:3000/courses/" + id, {
             method: "DELETE",
             headers: {
                 "Accept": "application/json",
                 "Content-type": "application/json"
-                //'Authorization': "Bearer " + token
             }
             });
 

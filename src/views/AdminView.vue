@@ -1,3 +1,4 @@
+<!--Created by Lina Petersson 2023-->
 <template>
     <AdminHeader :headerChange="headerChange" />
     <Info @infoUpdated="updateHeader"  />
@@ -73,16 +74,12 @@ export default {
             this.addBtn = true,
             this.updateBtn = false
 
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
-
             //Fetch, turn response into json and save in data variable
             const resp = await fetch("http://127.0.0.1:3000/projects/", {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
-                    "Content-type": "application/json",
-                    //'Authorization': "Bearer " + token
+                    "Content-type": "application/json"
                 }
             });
 
@@ -93,10 +90,8 @@ export default {
 
         },
         async addProject() {
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
 
-            //Control if input is correct else show error message. If correct save input in body to post
+            //Control if input is correct. If correct save input in body to post
             if(this.name.length != "" && this.desc.length != "" && this.link.length != "") {
                 
                 let projectBody = {
@@ -110,8 +105,7 @@ export default {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",
-                        "Content-type": "application/json",
-                        //'Authorization': "Bearer " + token
+                        "Content-type": "application/json"
                     },
                     body: JSON.stringify(projectBody)
                 });
@@ -131,15 +125,13 @@ export default {
             }
         },
         async getProjectById(id) {
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
+
             //Fetch, turn response into json and save in data variable
             const resp = await fetch("http://127.0.0.1:3000/projects/" + id, {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
                     "Content-type": "application/json"
-                    //'Authorization': "Bearer " + token
                 }
             });
 
@@ -154,12 +146,10 @@ export default {
             this.addBtn = false
         },
         async updateProject() {
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
 
             let id = this.id;
 
-            //Control if input is correct else show error message. If correct save input in body to post
+            //Control if input is correct. If correct save input in body to post
             if(this.name.length != "" && this.desc.length != "" && this.link.length != "") {
                 
                 let projectBody = {
@@ -174,7 +164,6 @@ export default {
                     headers: {
                         "Accept": "application/json",
                         "Content-type": "application/json"
-                        //'Authorization': "Bearer " + token
                     },
                     body: JSON.stringify(projectBody)
                 });

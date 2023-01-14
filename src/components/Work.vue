@@ -1,3 +1,4 @@
+<!--Created by Lina Petersson 2023-->
 <template>
     <section class="container">
         <h2>Mina tidigare arbetsplatser</h2>
@@ -58,16 +59,12 @@ export default {
     methods: {
         async getWork() {
 
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
-
             //Fetch, turn response into json and save in data variable
             const resp = await fetch("http://127.0.0.1:3000/work", {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
-                    "Content-type": "application/json",
-                    //'Authorization': "Bearer " + token
+                    "Content-type": "application/json"
                 }
             });
 
@@ -77,10 +74,8 @@ export default {
             this.work = data;  
         },
         async addWork() {
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
 
-            //Control if input is correct else show error message. If correct save input in body to post
+            //Control if input is correct. If correct save input in body to post
             if(this.company.length != "" && this.jobtitle.length != "" && this.period.length != "") {
                 
                 let workBody = {
@@ -94,8 +89,7 @@ export default {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",
-                        "Content-type": "application/json",
-                        //'Authorization': "Bearer " + token
+                        "Content-type": "application/json"
                     },
                     body: JSON.stringify(workBody)
                 });
@@ -116,15 +110,13 @@ export default {
             }
         },
         async getWorkById(id) {
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
+
             //Fetch, turn response into json and save in data variable
             const resp = await fetch("http://127.0.0.1:3000/work/" + id, {
                 method: "GET",
                 headers: {
                     "Accept": "application/json",
                     "Content-type": "application/json"
-                    //'Authorization': "Bearer " + token
                 }
             });
 
@@ -139,12 +131,10 @@ export default {
             this.addWorkBtn = false
         },
         async updateWork() {
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
 
             let id = this.id;
 
-            //Control if input is correct else show error message. If correct save input in body to post
+            //Control if input is correct. If correct save input in body to post
             if(this.company.length != "" && this.jobtitle.length != "" && this.period.length != "") {
                 
                 let workBody = {
@@ -159,7 +149,6 @@ export default {
                     headers: {
                         "Accept": "application/json",
                         "Content-type": "application/json"
-                        //'Authorization': "Bearer " + token
                     },
                     body: JSON.stringify(workBody)
                 });
@@ -181,16 +170,12 @@ export default {
         },
         async deleteWork(id) {
 
-            //Get saved token
-            //const token = localStorage.getItem('token'); 
-
             //Delete work in database
             const resp = await fetch("http://127.0.0.1:3000/work/" + id, {
             method: "DELETE",
             headers: {
                 "Accept": "application/json",
                 "Content-type": "application/json"
-                //'Authorization': "Bearer " + token
             }
             });
             this.updated = false,

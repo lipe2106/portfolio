@@ -1,3 +1,4 @@
+<!--Created by Lina Petersson 2023-->
 <template>
     <Header />
     <section>
@@ -57,15 +58,12 @@ import Header from '../components/Header.vue'
         methods: {
             async getProjectById(id) {
 
-                //Get saved token
-                //const token = localStorage.getItem('token'); 
                 //Fetch, turn response into json and save in data variable
                 const resp = await fetch("http://127.0.0.1:3000/projects/" + id, {
                     method: "GET",
                     headers: {
                         "Accept": "application/json",
                         "Content-type": "application/json"
-                        //'Authorization': "Bearer " + token
                     }
                 });
 

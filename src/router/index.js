@@ -1,3 +1,4 @@
+// Created by Lina Petersson 2023
 import { createRouter, createWebHistory } from 'vue-router'
 import PortfolioView from '../views/PortfolioView.vue'
 import AdminView from '../views/AdminView.vue'

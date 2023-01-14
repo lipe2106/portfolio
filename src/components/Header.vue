@@ -1,6 +1,7 @@
+<!--Created by Lina Petersson 2023-->
 <template>
     <header>
-        <RouterLink to="/portfolio">
+        <RouterLink to="/portfolio"> <!--Link back to portfolio startpage-->
             <div class="header-container">
                 <div class="img-container">
                     <img src="../assets/jag.jpg" alt="Profilbild" />
@@ -37,15 +38,13 @@ import { RouterLink } from 'vue-router';
             async getUserById() {
 
                 let id = "63a582a8732d6aaaa3550873";
-                //Get saved token
-                //const token = localStorage.getItem('token'); 
+
                 //Fetch, turn response into json and save in data variable
                 const resp = await fetch("http://127.0.0.1:3000/user/" + id, {
                     method: "GET",
                     headers: {
                         "Accept": "application/json",
                         "Content-type": "application/json"
-                        //'Authorization': "Bearer " + token
                     }
                 });
 

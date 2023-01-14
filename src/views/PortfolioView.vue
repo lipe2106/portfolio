@@ -1,3 +1,4 @@
+<!--Created by Lina Petersson 2023-->
 <template>
   <Header />
   <section>
@@ -10,6 +11,7 @@
   <section>
     <h2>Mina projekt</h2>
     <div class="project-container">
+      <!--Loop through projects, print cards as link to project view-->
       <div class="project-card" v-for="project in projects" :project="project" :key="project._id">
         <RouterLink v-if="project.path" :to="{name: `${ project.path }`, params:{id: project._id}}" title="Klicka för mer info">
           <img :src="`/img/${ project.image1 }`"  alt="Bild på projektet" />
@@ -18,6 +20,7 @@
           <p>...</p>
         </RouterLink>
         <div v-else>
+          <!--Control if image exists else show default image-->
           <img v-if="project.image1 == undefined" src="../assets/image.png" alt="Bild finns ej" class="undefined" />
           <img v-else :src="`/img/${ project.image1 }`"  alt="Bild på projektet" />
           <h3>{{ project.name }}</h3>
@@ -36,7 +39,7 @@
           <th class="three">Kursplan:</th>
         </thead>
         <tbody>
-          <!--Loop through and show work -->
+          <!--Loop through and show courses -->
           <tr v-for="courses in courses" :course="courses" :key="courses._id">
             <td class="one">{{courses.name}}</td>
             <td class="two">{{courses.knowledge}}</td>
@@ -91,16 +94,12 @@ export default {
   methods: {
     async getProjects() {
 
-        //Get saved token
-        //const token = localStorage.getItem('token'); 
-
         //Fetch, turn response into json and save in data variable
         const resp = await fetch("http://127.0.0.1:3000/projects/", {
             method: "GET",
             headers: {
                 "Accept": "application/json",
-                "Content-type": "application/json",
-                //'Authorization': "Bearer " + token
+                "Content-type": "application/json"
             }
         });
 
@@ -111,16 +110,12 @@ export default {
     },
     async getCourses() {
 
-      //Get saved token
-      //const token = localStorage.getItem('token'); 
-
       //Fetch, turn response into json and save in data variable
       const resp = await fetch("http://127.0.0.1:3000/courses/", {
           method: "GET",
           headers: {
               "Accept": "application/json",
-              "Content-type": "application/json",
-              //'Authorization': "Bearer " + token
+              "Content-type": "application/json"
           }
       });
 
@@ -132,15 +127,13 @@ export default {
     async getUserById() {
 
       let id = "63a582a8732d6aaaa3550873";
-      //Get saved token
-      //const token = localStorage.getItem('token'); 
+
       //Fetch, turn response into json and save in data variable
       const resp = await fetch("http://127.0.0.1:3000/user/" + id, {
           method: "GET",
           headers: {
               "Accept": "application/json",
               "Content-type": "application/json"
-              //'Authorization': "Bearer " + token
           }
       });
 
@@ -152,16 +145,12 @@ export default {
     },
     async getWork() {
 
-      //Get saved token
-      //const token = localStorage.getItem('token'); 
-
       //Fetch, turn response into json and save in data variable
       const resp = await fetch("http://127.0.0.1:3000/work", {
           method: "GET",
           headers: {
               "Accept": "application/json",
-              "Content-type": "application/json",
-              //'Authorization': "Bearer " + token
+              "Content-type": "application/json"
           }
       });
 
