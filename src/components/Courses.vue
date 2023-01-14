@@ -272,6 +272,8 @@ export default {
         border: 0.5px solid gray;
         height: 20px;
         padding-left: 2%;
+        color: black;
+        font-family: 'Source Sans Pro', sans-serif;
     }
 
     .course {

@@ -11,7 +11,7 @@
     <h2>Mina projekt</h2>
     <div class="project-container">
       <div class="project-card" v-for="project in projects" :project="project" :key="project._id">
-        <RouterLink v-if="project.path" :to="{name: `${ project.path }`, params:{id: project._id}}">
+        <RouterLink v-if="project.path" :to="{name: `${ project.path }`, params:{id: project._id}}" title="Klicka för mer info">
           <img :src="`/img/${ project.image1 }`"  alt="Bild på projektet" />
           <h3>{{ project.name }}</h3>
           <p class="description">{{ project.description }}</p>
@@ -40,7 +40,7 @@
           <tr v-for="courses in courses" :course="courses" :key="courses._id">
             <td class="one">{{courses.name}}</td>
             <td class="two">{{courses.knowledge}}</td>
-            <td class="three"><a :href=" courses.syllabus "  target="_blank"><img src="../assets/link.png" alt="Länkikon" class="link" /></a></td>
+            <td class="three"><a :href=" courses.syllabus " target="_blank" title="Länk till kursplan"><img src="../assets/link.png" alt="Länkikon" class="link" /></a></td>
           </tr>
         </tbody>
       </table>
@@ -232,6 +232,11 @@ p, li, blockquote, table {
   font-weight: 100;
   color: rgb(68, 68, 68);
   font-size: 0.8em;
+}
+
+.user-info p {
+  line-height: 1.4em;
+  text-align: justify;
 }
 
 ul {

@@ -104,6 +104,11 @@ p, blockquote {
   font-size: 0.8em;
 }
 
+p {
+  line-height: 1.4em;
+  text-align: justify;
+}
+
 .link {
   width: 15px;
   height: 15px;

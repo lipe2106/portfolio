@@ -183,6 +183,8 @@ export default {
         font-weight: 100;
         color: rgb(68, 68, 68);
         font-size: 0.8em;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     @media (max-width: 850px)
